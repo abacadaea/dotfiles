@@ -5,14 +5,18 @@ set number
 set textwidth=90
 
 "Set editing defaults
-set ts=4
-set sw=4
 set et
-au FileType html,htmljinja,jinja,htmldjango,js,javascript,tex,css setl sw=2 ts=2 et
+set sw=2
+set ts=2
+
+au FileType python setl sw=4 ts=4
 
 syntax on
 set smartindent
 set makeprg=pdflatex\ %:r;open\ %:r.pdf
+
+"Allow mouse clicking
+set mouse=a
 
 """Stolen stuff
 
