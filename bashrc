@@ -19,7 +19,7 @@ alias mv='mv -iv'
 alias sl='ls'
 
 alias grep="grep --color=auto"
-alias ls="ls -p"
+alias ls="ls -pG"
 alias duls="du -h -d1 | sort -hr"
 alias cdd="cd .."
 alias resolve='cd "`pwd -P`"'
@@ -41,8 +41,9 @@ alias gca="git commit -a"
 alias gcm="git commit -m"
 alias gcam="git commit -am"
 
-alias gs="git status"
+alias gb="git branch"
 alias gd="git diff"
+alias gs="git status"
 
 # pretty Git log
 alias gl='git log --graph --pretty="%C(bold green)%h%Creset%C(auto)%d%Creset %s"'
