@@ -22,8 +22,10 @@
 
 
 % environments
+\theoremstyle{plain}
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{idea}[theorem]{Idea}
 \newtheorem{claim}[theorem]{Claim}
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{fact}[theorem]{Fact}
@@ -35,6 +37,17 @@
 \newtheorem{notation}[theorem]{Notation}
 \newtheorem{example}[theorem]{Example}
 \newtheorem{examples}[theorem]{Examples}
+\newtheorem{question}[theorem]{Question}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{solution}{Solution}
+\newtheorem*{definition*}{Definition}
+\newtheorem*{remark*}{Remark}
+\newtheorem*{notation*}{Notation}
+\newtheorem*{example*}{Example}
+\newtheorem*{examples*}{Examples}
+\newtheorem*{question*}{Question}
+\newtheorem*{problem*}{Problem}
+\newtheorem*{solution*}{Solution}
 
 % commands
 \newcommand{\be}{\begin{enumerate}}
@@ -48,15 +61,19 @@
 \newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
 \newcommand{\centered}[1]{\begin{center}{#1}\end{center}}
 
-\providecommand{\abs}[1]{\left\vert#1\right\vert}
-%\newcommand {\align}[1]{\begin{align*}{#1}\end{align*}}
 
-%functions
+%functions, macros, trolling
 \newcommand\taylorEToX[2]{\sum_{#2 = 0}^{\infty} \frac{\left(#1\right)^{#2}} {\left(#2\right)!} }
 \newcommand\llnorm[1]{\sqrt{ #1_1^2+#1_2^2}}
 \newcommand\lpnorm[2]{\sqrt[ #2 ]{ #1_1^{ #2 }+#1_2^ { #2 }}}
 \newcommand\lldotsnorm[2]{\sqrt{ #1_1^2+\cdots + #1_{ #2 }^2}}
+\providecommand{\abs}[1]{\left\vert#1\right\vert}
+\newcommand{\m}[1]{$#1$\,}
+\newcommand{\q}[1]{\stackrel{?}{#1}}
 
+
+% math mode symbols
+\newcommand\qeq{\q=}
 \newcommand\dsp{\displaystyle}
 \newcommand\xor{^\wedge}
 \newcommand\ii{\item}
@@ -67,9 +84,13 @@
 \newcommand\norm[1]{\left\lVert#1\right\rVert}
 \newcommand\nonempty{\neq\emptyset}
 \newcommand\isempty{=\emptyset}
+\newcommand\many[1]{ #1 \cdots #1 }
+\newcommand\pluses{\many+}
+\newcommand\minuses{\many-}
+\newcommand\wedges{\many\wedge}
+\newcommand\normal{\triangleleft\,}
+\newcommand\sqrteps{\sqrt\eps}
 
-%\newcommand\implies {\Longrightarrow}
-%\newcommand\iff {\Longleftrightarrow}
 \newcommand\rarrow {\rightarrow}
 \newcommand\rrarrow {\longrightarrow}
 \newcommand\Rarrow {\Rightarrow}
@@ -81,7 +102,16 @@
 \newcommand\LRarrow {\Leftrightarrow}
 \newcommand{\defeq}{\vcentcolon=}
 \newcommand{\eqdef}{=\vcentcolon}
+\newcommand{\sigmastar}{\Sigma^*}
 
+% geometry
+\newcommand\ang{\angle}
+\newcommand\arc{\widehat}
+\newcommand\ol{\overline}
+\newcommand\mang{m\angle}
+\newcommand\sinang{\sin\angle}
+\newcommand\cosang{\cos\angle}
+\newcommand\tanang{\tan\angle}
 
 %derivatives
 \newcommand\dd[2]{\frac{d#1}{d#2}}
@@ -130,7 +160,6 @@
 \newcommand{\lbr}{\left\{}
 \newcommand{\rbr}{\right\}}
 \newcommand{\br}[1]{\lbr#1\rbr}
-%\newcommand{\norm}[1]{\left\vert#1\right\vert}
 \newcommand{\lf}{\lfloor}
 \newcommand{\rf}{\rfloor}
 \newcommand{\Lf}{\left\lfloor}
@@ -153,16 +182,7 @@
 \newcommand{\phitilde}{\tild{\varphi}}
 \newcommand{\id}[1]{^{(#1)}}
 
-%geometry
-\newcommand\ang{\angle}
-\newcommand\arc{\widehat}
-\newcommand\ol{\overline}
-\newcommand\mang{m\angle}
-\newcommand\sinang{\sin\angle}
-\newcommand\cosang{\cos\angle}
-\newcommand\tanang{\tan\angle}
-
-% math symbols
+% symbols
 \renewcommand{\Pr}{\mathop{\bf Pr\/}}         
 \newcommand{\E}{\mathop{\bf E\/}}
 \newcommand{\Ex}{\mathop{\bf E\/}}
@@ -178,6 +198,7 @@
 \newcommand\Z{\rZ}
 \renewcommand\v[1]{\vec {\bm #1}}
 
+% more symbols
 \newcommand\ZZ{\mathbb{Z}}
 \newcommand\RR{\mathbb{R}}
 \newcommand\AAA{\mathbb{A}}
@@ -187,7 +208,9 @@
 \newcommand\NN{\mathbb{N}}
 \newcommand\FF{\mathbb{F}}
 \newcommand\HH{\mathbb{H}}
-\renewcommand\SS{\mathbb{S}}
+\newcommand\bbA{\mathbb{A}}
+\newcommand\bbB{\mathbb{B}}
+\newcommand\bbC{\mathbb{C}} % to be continued...
 \newcommand\calA{\mathcal{A}}
 \newcommand\calB{\mathcal{B}}
 \newcommand\calC{\mathcal{C}}
@@ -200,6 +223,9 @@
 \newcommand\calJ{\mathcal{J}}
 \newcommand\calK{\mathcal{K}}
 \newcommand\calL{\mathcal{L}}
+\newcommand\calM{\mathcal{M}}
+\newcommand\calN{\mathcal{N}}
+\newcommand\calO{\mathcal{O}}
 \newcommand\calP{\mathcal{P}}
 \newcommand\calR{\mathcal{R}}
 \newcommand\calS{\mathcal{S}}
@@ -207,6 +233,9 @@
 \newcommand\calU{\mathcal{U}}
 \newcommand\calV{\mathcal{V}}
 \newcommand\calW{\mathcal{W}}
+\newcommand\calX{\mathcal{X}}
+\newcommand\calY{\mathcal{Y}}
+\newcommand\calZ{\mathcal{Z}}
 \newcommand\CCx{{\mathbb{C}^x}}
 \newcommand\eps{\epsilon}
 \newcommand\lam{\lambda}
@@ -250,9 +279,7 @@
 \newcommand\Dec{\text{Dec}\,}
 \newcommand\supp{\text{supp}\,}
 \newcommand\Reg{\text{Reg}\,}
-
-%operators
-\newcommand\normal{\triangleleft\,}
+\newcommand\LCS{\text{LCS}\,}
 
 %typos
 \newcommand\lamba{\lambda}
