@@ -4,13 +4,18 @@ export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 export EDITOR='vim'
 
-function lpdf () {
+function lpdf_ref () {
 	if latex $1.tex; then 
 		bibtex $1;
 		latex $1.tex;
 		pdflatex $1.tex;
 		open $1.pdf;
 	fi
+}
+
+function lpdf () {
+  pdflatex $1.tex;
+  open $1.pdf;
 }
 
 alias rm='rm -i'
