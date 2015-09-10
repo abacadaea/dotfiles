@@ -1,6 +1,8 @@
+%%%%%% Styling %%%%%%
+
 \newcounter{qcounter}
 \usepackage{graphicx, mathtools, amssymb, latexsym, amsmath, amsfonts, amsthm}
-\usepackage{array, fancyhdr, xcolor, bm, listings, tikz, soul}
+\usepackage{array, fancyhdr, xcolor, bm, listings, tikz, soul, xcolor}
 %\usepackage[hidelinks]{hyperref}
 %\pagestyle{fancy}
 %\hypersetup{colorlinks=false}
@@ -18,10 +20,11 @@
 %\setlength{\parindent}{0pc}
 \setlength{\parskip}{0in}
 
-%%% Macros %%%
+%%%%%% Macros %%%%%%
 
+%%% Text Mode %%%
 
-% environments
+% Theorems
 \theoremstyle{plain}
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
@@ -49,7 +52,11 @@
 \newtheorem*{problem*}{Problem}
 \newtheorem*{solution*}{Solution}
 
-% commands
+\newtheoremstyle{named}{}{}{\itshape}{}{\bfseries}{.}{.5em}{\thmnote{#3's }#1}
+\theoremstyle{named}
+\newtheorem*{namedtheorem}{Theorem}
+
+% text
 \newcommand{\be}{\begin{enumerate}}
 \newcommand{\ee}{\end{enumerate}}
 \def\bal#1\eal{\begin{align*}#1\end{align*}}
@@ -61,78 +68,20 @@
 \newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
 \newcommand{\centered}[1]{\begin{center}{#1}\end{center}}
 
+%colors
+\newcommand\red{\color{red}}
+\newcommand\orange{\color{orange}}
+\newcommand\yellow{\color{yellow}}
+\newcommand\green{\color{green}}
+\newcommand\blue{\color{blue}}
+\newcommand\purple{\color{purple}}
 
-%functions, macros, trolling
+%%% Math Mode %%%
+
+%% Macros %%
 \newcommand\taylorEToX[2]{\sum_{#2 = 0}^{\infty} \frac{\left(#1\right)^{#2}} {\left(#2\right)!} }
-\newcommand\llnorm[1]{\sqrt{ #1_1^2+#1_2^2}}
-\newcommand\lpnorm[2]{\sqrt[ #2 ]{ #1_1^{ #2 }+#1_2^ { #2 }}}
-\newcommand\lldotsnorm[2]{\sqrt{ #1_1^2+\cdots + #1_{ #2 }^2}}
-\providecommand{\abs}[1]{\left\vert#1\right\vert}
 \newcommand{\m}[1]{$#1$\,}
 \newcommand{\q}[1]{\stackrel{?}{#1}}
-
-
-% math mode symbols
-\newcommand\qeq{\q=}
-\newcommand\dsp{\displaystyle}
-\newcommand\xor{^\wedge}
-\newcommand\ii{\item}
-\newcommand\inv{^{-1}}
-\newcommand\dg{^{\circ}}
-\newcommand\directsum{\bigoplus}
-\newcommand\dsum{\bigoplus}
-\newcommand\norm[1]{\left\lVert#1\right\rVert}
-\newcommand\nonempty{\neq\emptyset}
-\newcommand\isempty{=\emptyset}
-\newcommand\many[1]{ #1 \cdots #1 }
-\newcommand\pluses{\many+}
-\newcommand\minuses{\many-}
-\newcommand\wedges{\many\wedge}
-\newcommand\normal{\triangleleft\,}
-\newcommand\sqrteps{\sqrt\eps}
-
-\newcommand\rarrow {\rightarrow}
-\newcommand\rrarrow {\longrightarrow}
-\newcommand\Rarrow {\Rightarrow}
-\newcommand\RRarrow {\Longrightarrow}
-\newcommand\larrow {\leftarrow}
-\newcommand\llarrow {\longleftarrow}
-\newcommand\Larrow {\Leftarrow}
-\newcommand\LLarrow {\Longleftarrow}
-\newcommand\LRarrow {\Leftrightarrow}
-\newcommand{\defeq}{\vcentcolon=}
-\newcommand{\eqdef}{=\vcentcolon}
-\newcommand{\sigmastar}{\Sigma^*}
-
-% geometry
-\newcommand\ang{\angle}
-\newcommand\arc{\widehat}
-\newcommand\ol{\overline}
-\newcommand\mang{m\angle}
-\newcommand\sinang{\sin\angle}
-\newcommand\cosang{\cos\angle}
-\newcommand\tanang{\tan\angle}
-
-%derivatives
-\newcommand\dd[2]{\frac{d#1}{d#2}}
-\newcommand\dAdt{\frac{dA}{dt}}
-\newcommand\dpdt{\frac{dp}{dt}}
-\newcommand\dxdt{\frac{dx}{dt}}
-\newcommand\dydx{\frac{dy}{dx}}
-\newcommand\dydt{\frac{dy}{dt}}
-\newcommand\ddydtt{\frac{d^2y}{dt^2}}
-\newcommand\dds {\dd {}{s}}
-\newcommand\ddx {\dd {}{x}}
-\newcommand\ddy {\dd {}{y}}
-\newcommand\ddz {\dd {}{z}}
-\newcommand\ddt {\dd {}{t}}
-\newcommand\del{\partial}
-\newcommand\deldel[2]{\frac{\partial #1}{\partial #2}}
-\newcommand\deldelx{\deldel{x}}
-\newcommand\deldely{\deldel{y}}
-\newcommand\deldelz{\deldel{z}}
-\newcommand\deldelt{\deldel{t}}
-\def\nab{\nabla}
 
 % matrices for displayed expressions
 \newcommand{\mat}[1]{\begin{matrix}#1\end{matrix}} % no delimiters
@@ -140,7 +89,7 @@
 \newcommand{\bmat}[1]{\bra{\mat{#1}}} % square brackets as delimiters
 
 % for small matrices to be used in in-line expressions
-\newcommand{\sm}[1]{\begin{smallmatrix}#1\end{smallmatrix}} % no delimiters 
+\newcommand{\sm}[1]{\begin{smallmatrix}#1\end{smallmatrix}} % no delimiters
 \newcommand{\psm}[1]{\pa{\sm{#1}}} % parentheses as delimiters
 \newcommand{\bsm}[1]{\bra{\sm{#1}}} % square brackets as delimiters
 
@@ -150,7 +99,7 @@
 \newcommand{\psfrac}[2]{\pa{\sfrac{#1}{#2}}} % sfrac enclosed in parentheses
 \newcommand{\bsfrac}[2]{\bra{\sfrac{#1}{#2}}} % sfrac enclosed in square brackets
 
-%bracketing
+% bracketing
 \newcommand{\lp}{\left(}
 \newcommand{\rp}{\right)}
 \newcommand{\pa}[1]{\lp#1\rp}
@@ -176,14 +125,91 @@
 \renewcommand{\>}{\rangle}
 \newcommand{\inner}[1]{\langle#1\rangle}
 \providecommand{\abs}[1]{\left\vert#1\right\vert}
-\newcommand{\lap}[1]{\calL\br{#1}}
+\newcommand\llnorm[1]{\sqrt{ #1_1^2+#1_2^2}}
+\newcommand\lpnorm[2]{\sqrt[ #2 ]{ #1_1^{ #2 }+#1_2^ { #2 }}}
+\newcommand\lldotsnorm[2]{\sqrt{ #1_1^2+\cdots + #1_{ #2 }^2}}
+\providecommand{\abs}[1]{\left\vert#1\right\vert}
 
+%% Symbols %%
+\newcommand\qeq{\q=}
+\newcommand\dsp{\displaystyle}
+\newcommand\xor{^\wedge}
+\newcommand\ii{\item}
+\newcommand\inv{^{-1}}
+\newcommand\dg{^{\circ}}
+\newcommand\directsum{\bigoplus}
+\newcommand\dsum{\bigoplus}
+\newcommand\norm[1]{\left\lVert#1\right\rVert}
+\newcommand\nonempty{\neq\emptyset}
+\newcommand\isempty{=\emptyset}
+\newcommand\many[1]{ #1 \cdots #1 }
+\newcommand\pluses{\many+}
+\newcommand\minuses{\many-}
+\newcommand\wedges{\many\wedge}
+\newcommand\normal{\triangleleft\,}
+\newcommand\sqrteps{\sqrt\eps}
+\newcommand{\defeq}{\vcentcolon=}
+\newcommand{\eqdef}{=\vcentcolon}
+\newcommand{\sigmastar}{\Sigma^*}
+\newcommand{\curv}{\kappa_g}
+\newcommand{\lap}[1]{\calL\br{#1}}
 \newcommand{\tild}{\widetilde}
 \newcommand{\phitilde}{\tild{\varphi}}
 \newcommand{\id}[1]{^{(#1)}}
+\def\nab{\nabla}
+\newcommand\eps{\epsilon}
+\newcommand\lam{\lambda}
+\newcommand\lamba{\lambda}
+\newcommand\half {\frac{1}{2}}
+\newcommand\third {\frac{1}{3}}
+\newcommand\fourth {\frac{1}{4}}
+\newcommand\fifth {\frac{1}{5}}
+\newcommand\sixth {\frac{1}{6}}
+\newcommand\seventh {\frac{1}{7}}
+\newcommand\eigth {\frac{1}{8}}
 
-% symbols
-\renewcommand{\Pr}{\mathop{\bf Pr\/}}         
+% arrows
+\newcommand\rarrow {\rightarrow}
+\newcommand\rrarrow {\longrightarrow}
+\newcommand\Rarrow {\Rightarrow}
+\newcommand\RRarrow {\Longrightarrow}
+\newcommand\larrow {\leftarrow}
+\newcommand\llarrow {\longleftarrow}
+\newcommand\Larrow {\Leftarrow}
+\newcommand\LLarrow {\Longleftarrow}
+\newcommand\LRarrow {\Leftrightarrow}
+
+% geometry
+\newcommand\ang{\angle}
+\newcommand\arc{\widehat}
+\newcommand\ol{\overline}
+\newcommand\mang{m\angle}
+\newcommand\sinang{\sin\angle}
+\newcommand\cosang{\cos\angle}
+\newcommand\tanang{\tan\angle}
+
+% derivatives
+\newcommand\dd[2]{\frac{d#1}{d#2}}
+\newcommand\dAdt{\frac{dA}{dt}}
+\newcommand\dpdt{\frac{dp}{dt}}
+\newcommand\dxdt{\frac{dx}{dt}}
+\newcommand\dydx{\frac{dy}{dx}}
+\newcommand\dydt{\frac{dy}{dt}}
+\newcommand\ddydtt{\frac{d^2y}{dt^2}}
+\newcommand\dds {\dd {}{s}}
+\newcommand\ddx {\dd {}{x}}
+\newcommand\ddy {\dd {}{y}}
+\newcommand\ddz {\dd {}{z}}
+\newcommand\ddt {\dd {}{t}}
+\newcommand\del{\partial}
+\newcommand\deldel[2]{\frac{\partial #1}{\partial #2}}
+\newcommand\deldelx{\deldel{x}}
+\newcommand\deldely{\deldel{y}}
+\newcommand\deldelz{\deldel{z}}
+\newcommand\deldelt{\deldel{t}}
+
+%% Text %%
+\renewcommand{\Pr}{\mathop{\bf Pr\/}}
 \newcommand{\E}{\mathop{\bf E\/}}
 \newcommand{\Ex}{\mathop{\bf E\/}}
 \newcommand{\Var}{\mathop{\bf Var\/}}
@@ -198,7 +224,6 @@
 \newcommand\Z{\rZ}
 \renewcommand\v[1]{\vec {\bm #1}}
 
-% more symbols
 \newcommand\ZZ{\mathbb{Z}}
 \newcommand\RR{\mathbb{R}}
 \newcommand\AAA{\mathbb{A}}
@@ -210,7 +235,18 @@
 \newcommand\HH{\mathbb{H}}
 \newcommand\bbA{\mathbb{A}}
 \newcommand\bbB{\mathbb{B}}
-\newcommand\bbC{\mathbb{C}} % to be continued...
+\newcommand\bbC{\mathbb{C}}
+\newcommand\bbD{\mathbb{D}}
+\newcommand\bbE{\mathbb{E}}
+\newcommand\bbF{\mathbb{F}}
+\newcommand\bbG{\mathbb{G}}
+\newcommand\bbH{\mathbb{H}}
+\newcommand\bbI{\mathbb{I}}
+\newcommand\bbJ{\mathbb{J}}
+\newcommand\bbK{\mathbb{K}}
+\newcommand\bbL{\mathbb{L}}
+\newcommand\bbM{\mathbb{M}}
+\newcommand\bbN{\mathbb{N}} % to be continued...
 \newcommand\calA{\mathcal{A}}
 \newcommand\calB{\mathcal{B}}
 \newcommand\calC{\mathcal{C}}
@@ -237,21 +273,12 @@
 \newcommand\calY{\mathcal{Y}}
 \newcommand\calZ{\mathcal{Z}}
 \newcommand\CCx{{\mathbb{C}^x}}
-\newcommand\eps{\epsilon}
-\newcommand\lam{\lambda}
-\newcommand\lcm{\text{lcm}}
-\newcommand\ord{\text{ord}}
-\newcommand\half {\frac{1}{2}}
-\newcommand\third {\frac{1}{3}}
-\newcommand\fourth {\frac{1}{4}}
-\newcommand\fifth {\frac{1}{5}}
-\newcommand\sixth {\frac{1}{6}}
-\newcommand\seventh {\frac{1}{7}}
-\newcommand\eigth {\frac{1}{8}}
 
-%text FIX with underset
+% more text FIX with underset
 \DeclareMathOperator*{\argmin}{arg\,min}
 \DeclareMathOperator*{\argmax}{arg\,max}
+\newcommand\lcm{\text{lcm}}
+\newcommand\ord{\text{ord}}
 \newcommand\dist{\text{dist}\,}
 \newcommand\poly{\text{poly}\,}
 \newcommand\rank{\text{rank}\,}
@@ -280,6 +307,3 @@
 \newcommand\supp{\text{supp}\,}
 \newcommand\Reg{\text{Reg}\,}
 \newcommand\LCS{\text{LCS}\,}
-
-%typos
-\newcommand\lamba{\lambda}
