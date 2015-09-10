@@ -1,6 +1,8 @@
+# python
 *.pyc
 *.pyo
 
+# latex
 *.aux
 *.bbl
 *.blg
@@ -9,3 +11,14 @@
 *.pdf
 *.swp
 *.swo
+.DS_Store
+
+# microsoft office
+*.xlsx
+*.docx
+
+# general
+old
+
+# misc
+.dropbox
