@@ -33,6 +33,7 @@ alias pyserv="python -m SimpleHTTPServer"
 alias py3serv="python3 -m http.server"
 alias ip="curl curlmyip.com"
 alias purgeswp='rm -i `find . | grep .swp$`'
+alias gti="git"
 
 # Git aliases
 alias git-lastmerge="git whatchanged -2 --oneline -p"
