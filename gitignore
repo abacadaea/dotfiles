@@ -8,9 +8,9 @@
 *.blg
 *.dvi
 *.log
+*.out
 *.pdf
-*.swp
-*.swo
+*.toc
 .DS_Store
 
 # microsoft office
@@ -19,6 +19,9 @@
 
 # general
 old
+*.swp
+*.swo
+*.old
 
 # misc
 .dropbox

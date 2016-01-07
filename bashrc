@@ -14,8 +14,9 @@ function lpdf_ref () {
 }
 
 function lpdf () {
-  pdflatex $1.tex;
-  open $1.pdf;
+  if pdflatex $1.tex; then
+    open $1.pdf;
+  fi
 }
 
 alias rm='rm -i'
