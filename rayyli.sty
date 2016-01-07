@@ -1,8 +1,8 @@
 %%%%%% Styling %%%%%%
 
 \newcounter{qcounter}
-\usepackage{graphicx, mathtools, amssymb, latexsym, amsmath, amsfonts, amsthm}
-\usepackage{array, fancyhdr, xcolor, bm, listings, tikz, soul, xcolor}
+\usepackage{graphicx, mathtools, amssymb, latexsym, amsmath, amsfonts, amsthm,bbm}
+\usepackage{array, fancyhdr, xcolor, bm, listings, tikz, soul, xcolor,titlesec}
 %\usepackage[hidelinks]{hyperref}
 %\pagestyle{fancy}
 %\hypersetup{colorlinks=false}
@@ -20,6 +20,29 @@
 %\setlength{\parindent}{0pc}
 \setlength{\parskip}{0in}
 
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true, % make the links colored
+    linkcolor=blue, % color TOC links in blue
+    urlcolor=red, % color URLs in red
+    linktoc=all % 'all' will create links for everything in the TOC
+}
+
+% Hack from http://tex.stackexchange.com/questions/60209/how-to-add-an-extra-level-of-sections-with-headings-below-subsubsection 
+\titleclass{\subsubsubsection}{straight}[\subsection]
+\newcounter{subsubsubsection}[subsubsection]
+\renewcommand\thesubsubsubsection{\thesubsubsection.\arabic{subsubsubsection}}
+\renewcommand\theparagraph{\thesubsubsubsection.\arabic{paragraph}} % optional; useful if paragraphs are to be numbered
+\titleformat{\subsubsubsection}
+  {\normalfont\normalsize\bfseries}{\thesubsubsubsection}{1em}{}
+\titlespacing*{\subsubsubsection}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+\def\toclevel@subsubsubsection{4}
+\def\l@subsubsubsection{\@dottedtocline{4}{7em}{4em}}
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+
+
 %%%%%% Macros %%%%%%
 
 %%% Text Mode %%%
@@ -28,11 +51,18 @@
 \theoremstyle{plain}
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{idea}[theorem]{Idea}
 \newtheorem{claim}[theorem]{Claim}
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{fact}[theorem]{Fact}
 \newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{hint}[theorem]{Hint}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem*{claim*}{Claim}
+\newtheorem*{proposition*}{Proposition}
+\newtheorem*{fact*}{Fact}
+\newtheorem*{corollary*}{Corollary}
+\newtheorem*{hint*}{Hint}
 
 \theoremstyle{definition}
 \newtheorem{definition}[theorem]{Definition}
@@ -42,7 +72,11 @@
 \newtheorem{examples}[theorem]{Examples}
 \newtheorem{question}[theorem]{Question}
 \newtheorem{problem}[theorem]{Problem}
+\newtheorem{exercise}[theorem]{Exercise}
 \newtheorem{solution}{Solution}
+\newtheorem{idea}{Idea}
+\newtheorem{intuition}{Intuition}
+\newtheorem*{theorem*}{Theorem}
 \newtheorem*{definition*}{Definition}
 \newtheorem*{remark*}{Remark}
 \newtheorem*{notation*}{Notation}
@@ -51,13 +85,54 @@
 \newtheorem*{question*}{Question}
 \newtheorem*{problem*}{Problem}
 \newtheorem*{solution*}{Solution}
+\newtheorem*{intuition*}{Intuition}
+\newtheorem*{idea*}{Idea}
 
-\newtheoremstyle{named}{}{}{\itshape}{}{\bfseries}{.}{.5em}{\thmnote{#3's }#1}
-\theoremstyle{named}
-\newtheorem*{namedtheorem}{Theorem}
+%\newcommand{\proof}[1]{\begin{proof}#1\end{proof}}
+\newcommand{\btheorem}{\begin{theorem}}
+\newcommand{\etheorem}{\end{theorem}}
+\newcommand{\bproblem}{\begin{problem}}
+\newcommand{\eproblem}{\end{problem}}
+\newcommand{\bfact}{\begin{fact}}
+\newcommand{\efact}{\end{fact}}
+\newcommand{\bexercise}{\begin{exercise}}
+\newcommand{\eexercise}{\end{exercise}}
+\newcommand{\bclaim}{\begin{claim}}
+\newcommand{\eclaim}{\end{claim}}
+\newcommand{\bcorollary}{\begin{corollary}}
+\newcommand{\ecorollary}{\end{corollary}}
+\newcommand{\bremark}{\begin{remark}}
+\newcommand{\eremark}{\end{remark}}
+\newcommand{\blemma}{\begin{lemma}}
+\newcommand{\elemma}{\end{lemma}}
+\newcommand{\bexample}{\begin{example}}
+\newcommand{\eexample}{\end{example}}
+\newcommand{\bdefinition}{\begin{definition}}
+\newcommand{\edefinition}{\end{definition}}
+\newcommand{\bproof}{\begin{proof}}
+\newcommand{\eproof}{\end{proof}}
+\newcommand{\sketch}[1]{\begin{proof}[Sketch]#1\end{proof}}
+
+%\newtheoremstyle{named}{}{}{\itshape}{}{\bfseries}{.}{5pt plus 1pt minus 1pt}
+%                       {\thmname{ #3}\thmnumber{ #2}}
+%\theoremstyle{named}
+%\newtheorem{nt}{Theorem}
+%\newtheorem*{nt*}{Theorem}
+
+%colors
+\newcommand\red[1]{{\color{red} #1}}
+\newcommand\orange[1]{{\color{orange} #1}}
+\newcommand\yellow[1]{{\color{yellow} #1}}
+\newcommand\green[1]{{\color{green} #1}}
+\newcommand\blue[1]{{\color{blue} #1}}
+\newcommand\purple[1]{{\color{purple} #1}}
+\newcommand\white[1]{{\color{white} #1}}
+\newcommand\whitespace{{\color{white}.}}
 
 % text
-\newcommand{\be}{\begin{enumerate}}
+\newcommand{\bitem}{\whitespace\begin{itemize}} % Hack to fix alignment issues
+\newcommand{\eitem}{\end{itemize}}
+\newcommand{\be}{\whitespace\begin{enumerate}} % Hack to fix alignment issues
 \newcommand{\ee}{\end{enumerate}}
 \def\bal#1\eal{\begin{align*}#1\end{align*}}
 \def\beq#1\eeq{\begin{equation}#1\end{equation}}
@@ -65,28 +140,28 @@
 \def\bcomment#1\ecomment{\begin{comment}#1\end{comment}}
 \newcommand{\ignore}[1]{}
 \newcommand{\raysays}[1]{{\color{red} {\tiny [Ray: #1]}}}
+\newcommand{\open}{\textbf{{Open}} }
+\newcommand{\todo}[1]{{\color{red} {\tiny [TODO: #1]}}}
+\newcommand{\TODO}[1]{{\color{red} {\tiny [TODO: #1]}}}
+\newcommand\fillin{\TODO{FILL IN}}
+\newcommand\FILLIN{\TODO{FILL IN}}
 \newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
 \newcommand{\centered}[1]{\begin{center}{#1}\end{center}}
-
-%colors
-\newcommand\red{\color{red}}
-\newcommand\orange{\color{orange}}
-\newcommand\yellow{\color{yellow}}
-\newcommand\green{\color{green}}
-\newcommand\blue{\color{blue}}
-\newcommand\purple{\color{purple}}
 
 %%% Math Mode %%%
 
 %% Macros %%
 \newcommand\taylorEToX[2]{\sum_{#2 = 0}^{\infty} \frac{\left(#1\right)^{#2}} {\left(#2\right)!} }
+\newcommand\liminfty[1]{\lim_{#1\to\infty}}
+\newcommand\limtoinfty[1]{\lim_{#1\to\infty}}
+\newcommand{\fn}[2]{:#1\to#2}
 \newcommand{\m}[1]{$#1$\,}
 \newcommand{\q}[1]{\stackrel{?}{#1}}
 
 % matrices for displayed expressions
 \newcommand{\mat}[1]{\begin{matrix}#1\end{matrix}} % no delimiters
 \newcommand{\pmat}[1]{\pa{\mat{#1}}} % parentheses as delimiters
-\newcommand{\bmat}[1]{\bra{\mat{#1}}} % square brackets as delimiters
+\newcommand{\bmat}[1]{\ba{\mat{#1}}} % square brackets as delimiters
 
 % for small matrices to be used in in-line expressions
 \newcommand{\sm}[1]{\begin{smallmatrix}#1\end{smallmatrix}} % no delimiters
@@ -123,6 +198,8 @@
 \newcommand{\Ceil}[1]{\Lc {#1}\Rc}
 \newcommand{\<}{\langle}
 \renewcommand{\>}{\rangle}
+\newcommand{\ab}[1]{\langle#1\rangle}
+\newcommand{\angbra}[1]{\langle#1\rangle}
 \newcommand{\inner}[1]{\langle#1\rangle}
 \providecommand{\abs}[1]{\left\vert#1\right\vert}
 \newcommand\llnorm[1]{\sqrt{ #1_1^2+#1_2^2}}
@@ -134,6 +211,8 @@
 \newcommand\qeq{\q=}
 \newcommand\dsp{\displaystyle}
 \newcommand\xor{^\wedge}
+\newcommand\andl{\wedge}
+\newcommand\orl{\vee}
 \newcommand\ii{\item}
 \newcommand\inv{^{-1}}
 \newcommand\dg{^{\circ}}
@@ -169,6 +248,10 @@
 \newcommand\eigth {\frac{1}{8}}
 
 % arrows
+\newcommand\lrarrow {\leftrightarrow}
+\newcommand\llrrarrow {\longleftrightarrow}
+\newcommand\LRarrow {\Leftrightarrow}
+\newcommand\LLRRarrow {\Longeftrightarrow}
 \newcommand\rarrow {\rightarrow}
 \newcommand\rrarrow {\longrightarrow}
 \newcommand\Rarrow {\Rightarrow}
@@ -177,7 +260,6 @@
 \newcommand\llarrow {\longleftarrow}
 \newcommand\Larrow {\Leftarrow}
 \newcommand\LLarrow {\Longleftarrow}
-\newcommand\LRarrow {\Leftrightarrow}
 
 % geometry
 \newcommand\ang{\angle}
@@ -272,6 +354,9 @@
 \newcommand\calX{\mathcal{X}}
 \newcommand\calY{\mathcal{Y}}
 \newcommand\calZ{\mathcal{Z}}
+\newcommand\two{\{0,1\}}
+\newcommand\one{\textbf{1}}
+\newcommand\zero{\textbf{0}}
 \newcommand\CCx{{\mathbb{C}^x}}
 
 % more text FIX with underset
@@ -281,6 +366,7 @@
 \newcommand\ord{\text{ord}}
 \newcommand\dist{\text{dist}\,}
 \newcommand\poly{\text{poly}\,}
+\DeclareMathOperator\polylog{polylog}
 \newcommand\rank{\text{rank}\,}
 \newcommand\Ran{\text{Ran}\,}
 \newcommand\Ker{\text{Ker}\,}
@@ -303,7 +389,21 @@
 \newcommand\vol{\text{vol}\,}
 \newcommand\len{\text{len}\,}
 \newcommand\diam{\text{diam}\,}
+\newcommand\perm{\text{perm}\,}
 \newcommand\Dec{\text{Dec}\,}
 \newcommand\supp{\text{supp}\,}
 \newcommand\Reg{\text{Reg}\,}
 \newcommand\LCS{\text{LCS}\,}
+\newcommand\Bin{\text{Binomial}\,}
+\newcommand\Binomial{\text{Binomial}\,}
+\newcommand\Poisson{\text{Poisson}\,}
+\newcommand\Geometric{\text{Geometric}\,}
+\newcommand\Bernoulli{\text{Bernoulli}\,}
+\newcommand\Exp{\text{Exp}\,}
+\newcommand\Uniform{\text{Uniform}\,}
+\newcommand\Pareto{\text{Pareto}\,}
+\newcommand\Normal{\text{Normal}\,}
+\newcommand\depth{\text{depth}\,}
+\newcommand\polyn{\text{poly}(n)\,}
+\newcommand\size{\text{size}\,}
+\newcommand\unsat{\text{unsat}\,}
