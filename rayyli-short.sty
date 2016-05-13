@@ -1,48 +1,8 @@
 %%%%%% Styling %%%%%%
 
-\newcounter{qcounter}
-\usepackage{graphicx, mathtools, amssymb, latexsym, amsmath, amsfonts, amsthm,bbm}
-\usepackage{array, fancyhdr, xcolor, bm, listings, tikz, soul, xcolor,titlesec}
-\usepackage[toc,page]{appendix}
-%\usepackage[style=alphabetic]{biblatex}
-%\usepackage[hidelinks]{hyperref}
-%\pagestyle{fancy}
-%\hypersetup{colorlinks=false}
-
-\setlength{\textheight}{9in}
-\setlength{\textwidth}{6.5in}
-\setlength{\topmargin}{-0.3in}
-\setlength{\headheight}{0.0in}
-\setlength{\headsep}{0.4in}
-\setlength{\headwidth}{6.5in}
-\setlength{\oddsidemargin}{0in}
-\setlength{\evensidemargin}{0in}
-%\setlength{\leftmargin}{-0.5in}
-%\setlength{\rightmargin}{-0.5in}
-%\setlength{\parindent}{0pc}
-\setlength{\parskip}{0in}
-
-\usepackage{hyperref}
-\hypersetup{
-    colorlinks=true, % make the links colored
-    linkcolor=blue, % color TOC links in blue
-    urlcolor=red, % color URLs in red
-    linktoc=all % 'all' will create links for everything in the TOC
-}
-
-% Hack from http://tex.stackexchange.com/questions/60209/how-to-add-an-extra-level-of-sections-with-headings-below-subsubsection 
-\titleclass{\subsubsubsection}{straight}[\subsection]
-\newcounter{subsubsubsection}[subsubsection]
-\renewcommand\thesubsubsubsection{\thesubsubsection.\arabic{subsubsubsection}}
-\renewcommand\theparagraph{\thesubsubsubsection.\arabic{paragraph}} % optional; useful if paragraphs are to be numbered
-\titleformat{\subsubsubsection}
-  {\normalfont\normalsize\bfseries}{\thesubsubsubsection}{1em}{}
-\titlespacing*{\subsubsubsection}
-{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
-\def\toclevel@subsubsubsection{4}
-\def\l@subsubsubsection{\@dottedtocline{4}{7em}{4em}}
-\setcounter{secnumdepth}{4}
-\setcounter{tocdepth}{4}
+\usepackage{amssymb, latexsym, amsmath, amsfonts, amsthm,bbm}
+%\usepackage{graphicx, mathtools, amssymb, latexsym, amsmath, amsfonts, amsthm,bbm}
+%\usepackage{array, fancyhdr, xcolor, bm, listings, tikz, soul, xcolor,titlesec}
 
 
 %%%%%% Macros %%%%%%
@@ -89,40 +49,6 @@
 \newtheorem*{solution*}{Solution}
 \newtheorem*{intuition*}{Intuition}
 \newtheorem*{idea*}{Idea}
-\newtheorem*{conjecture*}{Conjecture}
-
-%\newcommand{\proof}[1]{\begin{proof}#1\end{proof}}
-\newcommand{\btheorem}{\begin{theorem}}
-\newcommand{\etheorem}{\end{theorem}}
-\newcommand{\bproblem}{\begin{problem}}
-\newcommand{\eproblem}{\end{problem}}
-\newcommand{\bfact}{\begin{fact}}
-\newcommand{\efact}{\end{fact}}
-\newcommand{\bexercise}{\begin{exercise}}
-\newcommand{\eexercise}{\end{exercise}}
-\newcommand{\bclaim}{\begin{claim}}
-\newcommand{\eclaim}{\end{claim}}
-\newcommand{\bcorollary}{\begin{corollary}}
-\newcommand{\ecorollary}{\end{corollary}}
-\newcommand{\bnotation}{\begin{notation}}
-\newcommand{\enotation}{\end{notation}}
-\newcommand{\bremark}{\begin{remark}}
-\newcommand{\eremark}{\end{remark}}
-\newcommand{\blemma}{\begin{lemma}}
-\newcommand{\elemma}{\end{lemma}}
-\newcommand{\bexample}{\begin{example}}
-\newcommand{\eexample}{\end{example}}
-\newcommand{\bdefinition}{\begin{definition}}
-\newcommand{\edefinition}{\end{definition}}
-\newcommand{\bproof}{\begin{proof}}
-\newcommand{\eproof}{\end{proof}}
-\newcommand{\sketch}[1]{\begin{proof}[Sketch]#1\end{proof}}
-
-%\newtheoremstyle{named}{}{}{\itshape}{}{\bfseries}{.}{5pt plus 1pt minus 1pt}
-%                       {\thmname{ #3}\thmnumber{ #2}}
-%\theoremstyle{named}
-%\newtheorem{nt}{Theorem}
-%\newtheorem*{nt*}{Theorem}
 
 %colors
 \newcommand\red[1]{{\color{red} #1}}
@@ -132,22 +58,11 @@
 \newcommand\blue[1]{{\color{blue} #1}}
 \newcommand\purple[1]{{\color{purple} #1}}
 \newcommand\white[1]{{\color{white} #1}}
-\newcommand\whitespace{{\color{white}.}}
 
 % text
-\newcommand{\bitem}{\whitespace\begin{itemize}} % Hack to fix alignment issues
-\newcommand{\eitem}{\end{itemize}}
-\newcommand{\be}{\whitespace\begin{enumerate}} % Hack to fix alignment issues
-\newcommand{\ee}{\end{enumerate}}
-\def\bal#1\eal{\begin{align*}#1\end{align*}}
-\def\beq#1\eeq{\begin{equation}#1\end{equation}}
-\def\bitem#1\eitem{\begin{itemize*}#1\end{itemize*}}
-\def\bcomment#1\ecomment{\begin{comment}#1\end{comment}}
 \newcommand{\ignore}[1]{}
 \newcommand{\raysays}[1]{{\color{red} {\small [Ray: #1]}}}
-\newcommand{\open}{\textbf{{Open}} }
-\newcommand{\todo}[1]{{\color{red} {\small [TODO: #1]}}}
-\newcommand{\TODO}[1]{{\color{red} {\small [TODO: #1]}}}
+\newcommand{\TODO}[1]{{\small [TODO: #1]}}
 \newcommand\fillin{\TODO{FILL IN}}
 \newcommand\FILLIN{\TODO{FILL IN}}
 \newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
@@ -251,7 +166,6 @@
 \newcommand\sixth {\frac{1}{6}}
 \newcommand\seventh {\frac{1}{7}}
 \newcommand\eigth {\frac{1}{8}}
-\newcommand{\al}[1]{{\aleph_{#1}}}
 
 % arrows
 \newcommand\lrarrow {\leftrightarrow}
@@ -291,11 +205,10 @@
 \newcommand\ddt {\dd {}{t}}
 \newcommand\del{\partial}
 \newcommand\deldel[2]{\frac{\partial #1}{\partial #2}}
-\newcommand\deldelx[1]{\deldel{#1}{x}}
-\newcommand\deldely[1]{\deldel{#1}{y}}
-\newcommand\deldelz[1]{\deldel{#1}{z}}
-\newcommand\deldelt[1]{\deldel{#1}{t}}
-\newcommand\grad{\nab}
+\newcommand\deldelx{\deldel{x}}
+\newcommand\deldely{\deldel{y}}
+\newcommand\deldelz{\deldel{z}}
+\newcommand\deldelt{\deldel{t}}
 
 %% Text %%
 \renewcommand{\Pr}{\mathop{\bf Pr\/}}
@@ -319,7 +232,6 @@
 \newcommand\BB{\mathbb{B}}
 \newcommand\QQ{\mathbb{Q}}
 \newcommand\CC{\mathbb{C}}
-\newcommand\PP{\mathbb{P}}
 \newcommand\NN{\mathbb{N}}
 \newcommand\NNfin{{[\mathbb{N}]^{<\infty}}}
 \newcommand\NNinf{{[\mathbb{N}]^\infty}}
@@ -339,11 +251,6 @@
 \newcommand\bbL{\mathbb{L}}
 \newcommand\bbM{\mathbb{M}}
 \newcommand\bbN{\mathbb{N}} % to be continued...
-\newcommand\bbO{\mathbb{O}} % to be continued...
-\newcommand\bbP{\mathbb{P}} % to be continued...
-\newcommand\bbQ{\mathbb{Q}} % to be continued...
-\newcommand\bbR{\mathbb{R}} % to be continued...
-\newcommand\bbS{\mathbb{S}} % to be continued...
 \newcommand\calA{\mathcal{A}}
 \newcommand\calB{\mathcal{B}}
 \newcommand\calC{\mathcal{C}}
@@ -425,9 +332,3 @@
 \DeclareMathOperator*\unsat{unsat}
 \DeclareMathOperator*\interior{int}
 \DeclareMathOperator*\cl{cl}
-\DeclareMathOperator*\ot{ot}
-\DeclareMathOperator*\height{ht}
-\DeclareMathOperator*\iden{id}
-\DeclareMathOperator*\Seq{Seq}
-\DeclareMathOperator*\range{range}
-\DeclareMathOperator*\domain{dom}

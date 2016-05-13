@@ -13,6 +13,15 @@ function lpdf_ref () {
 	fi
 }
 
+function lpdf_pic_ref () {
+	if pdflatex $1.tex; then 
+		bibtex $1;
+		pdflatex $1.tex;
+		pdflatex $1.tex;
+		open $1.pdf;
+	fi
+}
+
 function lpdf () {
   if pdflatex $1.tex; then
     open $1.pdf;
