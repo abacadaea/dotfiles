@@ -60,6 +60,7 @@ alias gcam="git commit -am"
 alias gb="git branch"
 alias gd="git diff"
 alias gs="git status"
+alias gp='git push'
 
 # pretty Git log
 alias gl='git log --graph --pretty="%C(bold green)%h%Creset%C(auto)%d%Creset %s"'
