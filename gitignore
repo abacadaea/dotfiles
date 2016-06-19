@@ -1,6 +1,7 @@
 # python
 *.pyc
 *.pyo
+venv
 
 # latex
 *.aux
@@ -25,6 +26,8 @@ old
 *.swp
 *.swo
 *.old
+*.zip
+Icon*
 
 # images
 *.png
