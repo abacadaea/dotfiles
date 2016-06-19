@@ -10,7 +10,7 @@ set sw=2
 set ts=2
 
 au FileType python setl sw=4 ts=4
-au BufNewFile,BufRead *.tex setl ft=tex
+au BufNewFile,BufRead *.tex setl ft=tex textwidth=0
 
 syntax on
 set smartindent
