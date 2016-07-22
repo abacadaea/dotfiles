@@ -12,6 +12,8 @@ venv
 *.out
 *.pdf
 *.toc
+*.nav
+*.snm
 .DS_Store
 
 # microsoft office
@@ -23,6 +25,7 @@ venv
 
 # general
 old
+tmp
 *.swp
 *.swo
 *.old
@@ -39,3 +42,4 @@ Icon*
 # misc
 .dropbox
 '
+\\
