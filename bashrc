@@ -28,6 +28,7 @@ function lpdf () {
   fi
 }
 
+alias c='cd'
 alias rm='rm -i'
 alias cp='cp -iv'
 alias mv='mv -iv'
