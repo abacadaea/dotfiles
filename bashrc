@@ -5,26 +5,29 @@ export LSCOLORS=GxFxCxDxBxegedabagaced
 export EDITOR='vim'
 
 function lpdf_ref () {
-	if latex $1.tex; then 
-		bibtex $1;
-		latex $1.tex;
-		pdflatex $1.tex;
-		open $1.pdf;
+  x=${1%%.*}
+	if latex $x.tex; then 
+		bibtex $x;
+		latex $x.tex;
+		pdflatex $x.tex;
+		open $x.pdf;
 	fi
 }
 
 function lpdf_pic_ref () {
-	if pdflatex $1.tex; then 
-		bibtex $1;
-		pdflatex $1.tex;
-		pdflatex $1.tex;
-		open $1.pdf;
+  x=${1%%.*}
+	if pdflatex $x.tex; then 
+		bibtex $x;
+		pdflatex $x.tex;
+		pdflatex $x.tex;
+		open $x.pdf;
 	fi
 }
 
 function lpdf () {
-  if pdflatex $1.tex; then
-    open $1.pdf;
+  x=${1%%.*}
+  if pdflatex $x.tex; then
+    open $x.pdf;
   fi
 }
 

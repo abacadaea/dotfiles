@@ -1,13 +1,14 @@
+""TODO: Highlight '$th's, 'will', '\ref{eq:' and similar common latex errors.
 set nocp
 set number
 
 """Ray's stuff
 " Key remaps
-nmap <C-O> O<Esc>j
+nmap <S-CR> O<Esc>j
 nmap <CR> o<Esc>k
 
+inoremap <C-D> ()<Left>
 au BufNewFile,BufRead *.tex inoremap <C-F> $$<Left>
-au BufNewFile,BufRead *.tex inoremap <C-D> ()<Left>
 au BufNewFile,BufRead *.tex inoremap <C-B> {}<Left>
 au BufNewFile,BufRead *.tex inoremap <C-V> <Esc>I%<Left>
 au BufNewFile,BufRead *.tex inoremap <C-E> <Bslash>begin{equation}<CR><Bslash>end{equation}<Esc>O
