@@ -31,7 +31,21 @@ function lpdf () {
   fi
 }
 
-alias c='cd'
+function c () {
+  DIR=$(dirname $1)
+  NAME=$(basename $1)
+  comp=$(ls $DIR |grep "^$NAME.*/$")
+  wc=$(echo $comp | wc -w)
+  first=$(echo $comp | cut -d " " -f 1)
+  if [ $wc == 1 ]; then
+    cd $DIR/$first
+    pwd
+    ls
+  else
+    echo $comp
+  fi
+}
+
 alias rm='rm -i'
 alias cp='cp -iv'
 alias mv='mv -iv'
