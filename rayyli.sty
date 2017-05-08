@@ -2,12 +2,16 @@
 
 \newcounter{qcounter}
 \usepackage{graphicx, mathtools, amssymb, latexsym, amsmath, amsfonts, amsthm,bbm}
-\usepackage{array, fancyhdr, xcolor, bm, listings, tikz, soul, xcolor,titlesec}
+\usepackage{array, fancyhdr, xcolor, bm, listings, tikz, soul, xcolor,titlesec, cancel}
 \usepackage[toc,page]{appendix}
 %\usepackage[style=alphabetic]{biblatex}
 %\usepackage[hidelinks]{hyperref}
 %\pagestyle{fancy}
 %\hypersetup{colorlinks=false}
+
+\usetikzlibrary{positioning,calc,backgrounds, shapes}
+\newcommand{\tikzmark}[1]{\tikz[overlay,remember picture] \node (#1) {};}
+
 
 \setlength{\textheight}{9in}
 \setlength{\textwidth}{6.5in}
@@ -30,6 +34,7 @@
     linktoc=all % 'all' will create links for everything in the TOC
 }
 
+
 % Hack from http://tex.stackexchange.com/questions/60209/how-to-add-an-extra-level-of-sections-with-headings-below-subsubsection 
 \titleclass{\subsubsubsection}{straight}[\subsection]
 \newcounter{subsubsubsection}[subsubsection]
@@ -43,6 +48,33 @@
 \def\l@subsubsubsection{\@dottedtocline{4}{7em}{4em}}
 \setcounter{secnumdepth}{4}
 \setcounter{tocdepth}{4}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%% Tikz %%%%%%%%%%%%%%%%%%%%
+
+\tikzstyle{43block}=[draw,shape=rectangle,shape aspect=1.33,minimum size=4em]
+
+
+
+
+
+
+
+
+
+
+
 
 
 %%%%%% Macros %%%%%%
@@ -136,16 +168,36 @@
 \newcommand\whitespace{{\color{white}.}}
 
 % text
+\newcommand{\inlinesection}[1]{\noindent\textbf{#1}}
 \newcommand{\bitem}{\whitespace\begin{itemize}} % Hack to fix alignment issues
 \newcommand{\eitem}{\end{itemize}}
 \newcommand{\be}{\whitespace\begin{enumerate}} % Hack to fix alignment issues
 \newcommand{\ee}{\end{enumerate}}
+\newcommand{\bi}{\whitespace\begin{itemize}} % Hack to fix alignment issues
+\newcommand{\ei}{\end{itemize}}
+\newcommand{\Q}{\textbf{Question: }}
+\newcommand{\A}{\textbf{Answer: }}
+\newcommand{\D}{\textbf{Definition: }}
+\newcommand{\C}{\textbf{Claim: }}
+\newcommand{\R}{\textbf{Remark: }}
+\newcommand{\T}{\textbf{Theorem: }}
+\newcommand{\textif}{\text{if }}
+\newcommand{\textow}{\text{o/w }}
+\newcommand{\textmeas}{\text{meas }}
+\newcommand{\textand}{\text{and }}
+\newcommand{\uu}{\underline}
 \def\bal#1\eal{\begin{align*}#1\end{align*}}
 \def\beq#1\eeq{\begin{equation}#1\end{equation}}
 \def\bitem#1\eitem{\begin{itemize*}#1\end{itemize*}}
 \def\bcomment#1\ecomment{\begin{comment}#1\end{comment}}
+\newcommand{\tikzcenter}[1]{\begin{center}\begin{tikzpicture}#1\end{tikzpicture}\end{center}}
+\newcommand{\centertikz}[1]{\begin{center}\begin{tikzpicture}#1\end{tikzpicture}\end{center}}
+\newcommand{\inlinetikz}[1]{\tikz[scale=0.2]{#1}}
+\newcommand{\case}[1]{\left\{\begin{matrix}#1\end{matrix}\right.}
 \newcommand{\ignore}[1]{}
+\newcommand{\mynote}[2]{\marginpar{\tiny {\bf {#2}:} \sf {#1}}}
 \newcommand{\raysays}[1]{{\color{red} {\small [Ray: #1]}}}
+\newcommand{\raynote}[1]{{\color{red} \mynote{#1}{RL}}} % Ray's note
 \newcommand{\open}{\textbf{{Open}} }
 \newcommand{\todo}[1]{{\color{red} {\small [TODO: #1]}}}
 \newcommand{\TODO}[1]{{\color{red} {\small [TODO: #1]}}}
@@ -154,6 +206,8 @@
 \newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
 \newcommand{\centered}[1]{\begin{center}{#1}\end{center}}
 \newcommand\tsup{\textsuperscript}
+\newcommand\timestamp[1]{\begin{flushright}\textbf{#1}\end{flushright}}
+
 
 %%% Math Mode %%%
 
@@ -161,9 +215,20 @@
 \newcommand\taylorEToX[2]{\sum_{#2 = 0}^{\infty} \frac{\left(#1\right)^{#2}} {\left(#2\right)!} }
 \newcommand\liminfty[1]{\lim_{#1\to\infty}}
 \newcommand\limtoinfty[1]{\lim_{#1\to\infty}}
+\newcommand\ntoinf{\lim_{n\to\infty}}
+\newcommand\ntoinfty{\lim_{n\to\infty}}
+\newcommand\onetoinf[1]{_{#1=1}^\infty}
+\newcommand\zerotoinf[1]{_{#1=1}^\infty}
+\newcommand\ninf{_{n=1}^\infty}
+\newcommand\kinf{_{k=1}^\infty}
+\newcommand\iinf{_{i=1}^\infty}
+\newcommand\nzinf{_{n=0}^\infty}
+\newcommand\kzinf{_{k=0}^\infty}
+\newcommand\izinf{_{i=0}^\infty}
 \newcommand{\fn}[2]{:#1\to#2}
 \newcommand{\m}[1]{$#1$\,}
 \newcommand{\q}[1]{\stackrel{?}{#1}}
+\newcommand{\ub}{\underbrace}
 
 % matrices for displayed expressions
 \newcommand{\mat}[1]{\begin{matrix}#1\end{matrix}} % no delimiters
@@ -191,6 +256,7 @@
 \newcommand{\lbr}{\left\{}
 \newcommand{\rbr}{\right\}}
 \newcommand{\br}[1]{\lbr#1\rbr}
+\newcommand{\bra}[1]{\lbr#1\rbr}
 \newcommand{\lf}{\lfloor}
 \newcommand{\rf}{\rfloor}
 \newcommand{\Lf}{\left\lfloor}
@@ -222,6 +288,8 @@
 \newcommand\orl{\vee}
 \newcommand\ii{\item}
 \newcommand\inv{^{-1}}
+\newcommand\sq{^{2}}
+\newcommand\sar{^*}
 \newcommand\dg{^{\circ}}
 \newcommand\directsum{\bigoplus}
 \newcommand\dsum{\bigoplus}
@@ -255,6 +323,8 @@
 \newcommand\eigth {\frac{1}{8}}
 \newcommand\eighth {\frac{1}{8}}
 \newcommand{\al}[1]{{\aleph_{#1}}}
+\newcommand{\leb}{\calL^N}
+\newcommand{\lebo}{\calL_o^N}
 
 % arrows
 \newcommand\lrarrow {\leftrightarrow}
@@ -307,13 +377,15 @@
 \newcommand{\Var}{\mathop{\bf Var\/}}
 \newcommand{\Cov}{\mathop{\bf Cov\/}}
 \newcommand{\stddev}{\mathop{\bf stddev\/}}
-\newcommand{\bi}[1]{\textit{\textbf{#1}}}
+\newcommand{\bfit}[1]{\textit{\textbf{#1}}}
 \newcommand\randX{\bm X}
 \newcommand\randY{\bm Y}
 \newcommand\randZ{\bm Z}
 \newcommand\X{\rX}
 \newcommand\Y{\rY}
 \newcommand\Z{\rZ}
+\newcommand\ZZn{\ZZ/n\ZZ}
+\newcommand\ZZp{\ZZ/p\ZZ}
 \renewcommand\v[1]{\vec {\bm #1}}
 
 \newcommand\ZZ{\mathbb{Z}}
@@ -347,6 +419,110 @@
 \newcommand\bbQ{\mathbb{Q}} % to be continued...
 \newcommand\bbR{\mathbb{R}} % to be continued...
 \newcommand\bbS{\mathbb{S}} % to be continued...
+\newcommand\bfa{\textbf{a}}
+\newcommand\bfb{\textbf{b}}
+\newcommand\bfc{\textbf{c}}
+\newcommand\bfd{\textbf{d}}
+\newcommand\bfe{\textbf{e}}
+\newcommand\bff{\textbf{f}}
+\newcommand\bfg{\textbf{g}}
+\newcommand\bfh{\textbf{h}}
+\newcommand\bfi{\textbf{i}}
+\newcommand\bfj{\textbf{j}}
+\newcommand\bfk{\textbf{k}}
+\newcommand\bfl{\textbf{l}}
+\newcommand\bfm{\textbf{m}}
+\newcommand\bfn{\textbf{n}}
+\newcommand\bfo{\textbf{o}}
+\newcommand\bfp{\textbf{p}}
+\newcommand\bfq{\textbf{q}}
+\newcommand\bfr{\textbf{r}}
+\newcommand\bfs{\textbf{s}}
+\newcommand\bft{\textbf{t}}
+\newcommand\bfu{\textbf{u}}
+\newcommand\bfv{\textbf{v}}
+\newcommand\bfw{\textbf{w}}
+\newcommand\bfx{\textbf{x}}
+\newcommand\bfy{\textbf{y}}
+\newcommand\bfz{\textbf{z}}
+\newcommand\bfA{\textbf{A}}
+\newcommand\bfB{\textbf{B}}
+\newcommand\bfC{\textbf{C}}
+\newcommand\bfD{\textbf{D}}
+\newcommand\bfE{\textbf{E}}
+\newcommand\bfF{\textbf{F}}
+\newcommand\bfG{\textbf{G}}
+\newcommand\bfH{\textbf{H}}
+\newcommand\bfI{\textbf{I}}
+\newcommand\bfJ{\textbf{J}}
+\newcommand\bfK{\textbf{K}}
+\newcommand\bfL{\textbf{L}}
+\newcommand\bfM{\textbf{M}}
+\newcommand\bfN{\textbf{N}}
+\newcommand\bfO{\textbf{O}}
+\newcommand\bfP{\textbf{P}}
+\newcommand\bfQ{\textbf{Q}}
+\newcommand\bfR{\textbf{R}}
+\newcommand\bfS{\textbf{S}}
+\newcommand\bfT{\textbf{T}}
+\newcommand\bfU{\textbf{U}}
+\newcommand\bfV{\textbf{V}}
+\newcommand\bfW{\textbf{W}}
+\newcommand\bfX{\textbf{X}}
+\newcommand\bfY{\textbf{Y}}
+\newcommand\bfZ{\textbf{Z}}
+\newcommand\fraka{\mathfrak{a}}
+\newcommand\frakb{\mathfrak{b}}
+\newcommand\frakc{\mathfrak{c}}
+\newcommand\frakd{\mathfrak{d}}
+\newcommand\frake{\mathfrak{e}}
+\newcommand\frakf{\mathfrak{f}}
+\newcommand\frakg{\mathfrak{g}}
+\newcommand\frakh{\mathfrak{h}}
+\newcommand\fraki{\mathfrak{i}}
+\newcommand\frakj{\mathfrak{j}}
+\newcommand\frakk{\mathfrak{k}}
+\newcommand\frakl{\mathfrak{l}}
+\newcommand\frakm{\mathfrak{m}}
+\newcommand\frakn{\mathfrak{n}}
+\newcommand\frako{\mathfrak{o}}
+\newcommand\frakp{\mathfrak{p}}
+\newcommand\frakq{\mathfrak{q}}
+\newcommand\frakr{\mathfrak{r}}
+\newcommand\fraks{\mathfrak{s}}
+\newcommand\frakt{\mathfrak{t}}
+\newcommand\fraku{\mathfrak{u}}
+\newcommand\frakv{\mathfrak{v}}
+\newcommand\frakw{\mathfrak{w}}
+\newcommand\frakx{\mathfrak{x}}
+\newcommand\fraky{\mathfrak{y}}
+\newcommand\frakz{\mathfrak{z}}
+\newcommand\frakA{\mathfrak{A}}
+\newcommand\frakB{\mathfrak{B}}
+\newcommand\frakC{\mathfrak{C}}
+\newcommand\frakD{\mathfrak{D}}
+\newcommand\frakE{\mathfrak{E}}
+\newcommand\frakF{\mathfrak{F}}
+\newcommand\frakG{\mathfrak{G}}
+\newcommand\frakH{\mathfrak{H}}
+\newcommand\frakI{\mathfrak{I}}
+\newcommand\frakJ{\mathfrak{J}}
+\newcommand\frakK{\mathfrak{K}}
+\newcommand\frakL{\mathfrak{L}}
+\newcommand\frakM{\mathfrak{M}}
+\newcommand\frakN{\mathfrak{N}}
+\newcommand\frakO{\mathfrak{O}}
+\newcommand\frakP{\mathfrak{P}}
+\newcommand\frakQ{\mathfrak{Q}}
+\newcommand\frakR{\mathfrak{R}}
+\newcommand\frakS{\mathfrak{S}}
+\newcommand\frakT{\mathfrak{T}}
+\newcommand\frakU{\mathfrak{U}}
+\newcommand\frakV{\mathfrak{V}}
+\newcommand\frakW{\mathfrak{W}}
+\newcommand\frakX{\mathfrak{X}}
+\newcommand\frakY{\mathfrak{Y}}
+\newcommand\frakZ{\mathfrak{Z}}
 \newcommand\calA{\mathcal{A}}
 \newcommand\calB{\mathcal{B}}
 \newcommand\calC{\mathcal{C}}
@@ -363,6 +539,7 @@
 \newcommand\calN{\mathcal{N}}
 \newcommand\calO{\mathcal{O}}
 \newcommand\calP{\mathcal{P}}
+\newcommand\calQ{\mathcal{Q}}
 \newcommand\calR{\mathcal{R}}
 \newcommand\calS{\mathcal{S}}
 \newcommand\calT{\mathcal{T}}
@@ -380,6 +557,8 @@
 % more text FIX with underset
 \DeclareMathOperator*{\argmin}{arg\,min}
 \DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*\esssup{esssup}
+\DeclareMathOperator*\essinf{essinf}
 \DeclareMathOperator*\lcm{lcm}
 \DeclareMathOperator*\ord{ord}
 \DeclareMathOperator*\dist{dist}
@@ -391,6 +570,8 @@
 \DeclareMathOperator*\im{Im}
 \DeclareMathOperator*\image{im}
 \DeclareMathOperator*\Image{Im}
+\DeclareMathOperator*\Domain{Domain}
+\DeclareMathOperator*\Dom{Dom}
 \DeclareMathOperator*\Aut{Aut}
 \DeclareMathOperator*\Fix{Fix}
 \DeclareMathOperator*\Pow{Pow}
@@ -411,6 +592,7 @@
 \DeclareMathOperator*\diam{diam}
 \DeclareMathOperator*\perm{perm}
 \DeclareMathOperator*\Dec{Dec}
+\DeclareMathOperator*\Majority{Majority}
 \DeclareMathOperator*\supp{supp}
 \DeclareMathOperator*\Reg{Reg}
 \DeclareMathOperator*\LCS{LCS}
@@ -436,3 +618,22 @@
 \DeclareMathOperator*\range{range}
 \DeclareMathOperator*\domain{dom}
 \DeclareMathOperator*\crossing{crossing}
+\DeclareMathOperator*\Term{Term}
+\DeclareMathOperator*\Fml{Fml}
+\DeclareMathOperator*\FV{FV}
+\DeclareMathOperator*\meas{meas}
+\DeclareMathOperator*\length{length}
+\DeclareMathOperator*\Mod{Mod}
+\DeclareMathOperator*\Sent{Sent}
+\DeclareMathOperator*\Th{Th}
+\DeclareMathOperator*\Sym{Sym}
+\DeclareMathOperator*\perimeter{perimeter}
+\DeclareMathOperator*\ED{ED}
+\DeclareMathOperator*\CD{CD}
+\DeclareMathOperator*\Adv{Adv}
+\DeclareMathOperator*\OnAdv{OnAdv}
+\DeclareMathOperator*\crss{cr}
+\DeclareMathOperator*\cis{cis}
+\newcommand\BDC{\textnormal{BDC}}
+\newcommand\outdeg{\textnormal{outdeg}}
+\newcommand\indeg{\textnormal{indeg}}
