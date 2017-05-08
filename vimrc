@@ -2,17 +2,31 @@
 set nocp
 set number
 
+"au BufNewFile,BufRead *.tex set cole=2
+"au BufNewFile,BufRead *.tex let g:tex_conceal="adgm"
+"au BufNewFile,BufRead *.tex set encoding=utf-8
+"au BufNewFile,BufRead *.tex set fileencoding=utf-8
+"set cole=2
+"let g:tex_conceal="adgm"
+"set encoding=utf-8
+"set fileencoding=utf-8
+
 """Ray's stuff
 " Key remaps
-nmap <S-CR> O<Esc>j
-nmap <CR> o<Esc>k
+nmap <CR> i<CR><Esc>
 
-inoremap <C-D> ()<Left>
-au BufNewFile,BufRead *.tex inoremap <C-F> $$<Left>
-au BufNewFile,BufRead *.tex inoremap <C-B> {}<Left>
+inoremap <C-F> ()<Left>
+au BufNewFile,BufRead *.tex inoremap <C-T> <Esc>I\{<Esc>A}<Esc>yyp<Up>I<Right>begin<Esc><Down>I<Right>end<Esc><Up>A
+"au BufNewFile,BufRead *.tex inoremap <C-I> <Bslash>textit{}<Left>
+au BufNewFile,BufRead *.tex inoremap <C-D> $$<++><Left><Left><Left><Left><Left>
+au BufNewFile,BufRead *.tex inoremap <C-F> ()<++><Left><Left><Left><Left><Left>
+"au BufNewFile,BufRead *.tex inoremap <C-G> {}<++><Left><Left><Left><Left><Left>
+au BufNewFile,BufRead *.tex inoremap <C-B> <Bslash>{<Bslash>}<++><Left><Left><Left><Left><Left><Left>
+"au BufNewFile,BufRead *.tex inoremap <C-H> []<++><Left><Left><Left><Left><Left>
 au BufNewFile,BufRead *.tex inoremap <C-V> <Esc>I%<Left>
-au BufNewFile,BufRead *.tex inoremap <C-E> <Bslash>begin{equation}<CR><Bslash>end{equation}<Esc>O
-au BufNewFile,BufRead *.tex inoremap <C-A> <Bslash>begin{align}<CR><Bslash>end{align}<Esc>O
+"au BufNewFile,BufRead *.tex inoremap <C-E> <Bslash>begin{equation}<CR><Bslash>end{equation}<Esc>O
+"au BufNewFile,BufRead *.tex inoremap <C-A> <Bslash>begin{align}<CR><Bslash>end{align}<Esc>O
+
 
 
 set textwidth=90
@@ -24,9 +38,11 @@ set ts=2
 
 au FileType python setl sw=4 ts=4
 au BufNewFile,BufRead *.tex setl ft=tex textwidth=0
+au BufNewFile,BufRead *.md setl ft=tex textwidth=0
+au BufNewFile,BufRead *.txt setl textwidth=0
+au BufNewFile,BufRead *.html setl textwidth=0
 
 syntax on
-set smartindent
 set makeprg=pdflatex\ %:r;open\ %:r.pdf
 
 "Allow mouse clicking
