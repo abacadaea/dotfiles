@@ -31,6 +31,21 @@ function lpdf () {
   fi
 }
 
+function lxe () {
+  x=${1%%.*}
+  if xelatex $x.tex; then
+    open $x.pdf;
+  fi
+}
+
+function lcont () {
+  x=${1%%.*}
+  #latexmk -pdf -pvc $x.tex &
+  open -a "Skim" $x.pdf;
+  latexmk -pvc -pdf -interaction=nonstopmode $x.tex
+  #latexmk -pvc -pdf $x.tex
+}
+
 function c () {
   DIR=$(dirname $1)
   NAME=$(basename $1)
@@ -44,6 +59,10 @@ function c () {
   else
     echo $comp
   fi
+}
+
+function backup () {
+  cp $1 ~/Dropbox/backup
 }
 
 alias rm='rm -i'
@@ -77,7 +96,7 @@ alias gcam="git commit -am"
 
 alias gb="git branch"
 alias gd="git diff"
-alias gs="git status"
+alias gt="git status"
 alias gp='git push'
 
 # pretty Git log
