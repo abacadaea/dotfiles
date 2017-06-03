@@ -31,6 +31,21 @@ function lpdf () {
   fi
 }
 
+function lpdf_nosoln() {
+  x=${1%%.*}
+  if pdflatex "\def\showsoln{0} \input{$x.tex}"; then
+    open $x.pdf;
+  fi
+}
+function lpdf_soln() {
+  x=${1%%.*}
+  x_soln=$x"_SOLUTIONS"
+  if pdflatex "\def\showsoln{1} \input{$x.tex}"; then
+    mv -f $x.pdf $x_soln.pdf
+    open $x_soln.pdf;
+  fi
+}
+
 function lxe () {
   x=${1%%.*}
   if xelatex $x.tex; then

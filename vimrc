@@ -19,6 +19,7 @@ inoremap <C-F> ()<Left>
 au BufNewFile,BufRead *.tex inoremap <C-T> <Esc>I\{<Esc>A}<Esc>yyp<Up>I<Right>begin<Esc><Down>I<Right>end<Esc><Up>A
 "au BufNewFile,BufRead *.tex inoremap <C-I> <Bslash>textit{}<Left>
 au BufNewFile,BufRead *.tex inoremap <C-D> $$<++><Left><Left><Left><Left><Left>
+au BufNewFile,BufRead *.tex noremap <C-D> wbi$<Esc>ea$<Esc>
 au BufNewFile,BufRead *.tex inoremap <C-F> ()<++><Left><Left><Left><Left><Left>
 "au BufNewFile,BufRead *.tex inoremap <C-G> {}<++><Left><Left><Left><Left><Left>
 au BufNewFile,BufRead *.tex inoremap <C-B> <Bslash>{<Bslash>}<++><Left><Left><Left><Left><Left><Left>

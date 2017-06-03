@@ -2,7 +2,7 @@
 
 \newcounter{qcounter}
 \usepackage{graphicx, mathtools, amssymb, latexsym, amsmath, amsfonts, amsthm,bbm}
-\usepackage{array, fancyhdr, xcolor, bm, listings, tikz, soul, xcolor,titlesec, cancel}
+\usepackage{array, fancyhdr, xcolor, bm, listings, tikz, soul, xcolor,titlesec, cancel,ifthen}
 \usepackage[toc,page]{appendix}
 %\usepackage[style=alphabetic]{biblatex}
 %\usepackage[hidelinks]{hyperref}
@@ -149,6 +149,26 @@
 \newcommand{\bproof}{\begin{proof}}
 \newcommand{\eproof}{\end{proof}}
 \newcommand{\sketch}[1]{\begin{proof}[Sketch]#1\end{proof}}
+
+
+
+
+
+
+
+%%%% FOR MOP HANDOUTS %%%%
+
+% Use the bash function when compiling
+%function lpdf_soln() {
+%  x=${1%%.*}
+%  x_soln=$x"_SOLUTIONS"
+%  if pdflatex "\def\showsoln{1} \input{$x.tex}"; then
+%    mv $x.pdf $x_soln.pdf
+%    open $x_soln.pdf;
+%  fi
+%}
+\renewcommand\solution[1]{\ifdefined\showsoln\ifthenelse{\equal{\showsoln}{1}}{\begin{solution*}#1\end{solution*}\fi}{}}
+\newcommand\soln[1]{\solution{#1}}
 
 %\newtheoremstyle{named}{}{}{\itshape}{}{\bfseries}{.}{5pt plus 1pt minus 1pt}
 %                       {\thmname{ #3}\thmnumber{ #2}}
