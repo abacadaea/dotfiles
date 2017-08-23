@@ -3,6 +3,69 @@
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 export EDITOR='vim'
+export BIBFILE="/Users/rayli/Dropbox/Latex/rayyli.bib"
+
+function bibclean () {
+  cd "/Users/rayli/Dropbox/Latex/"
+  bib="rayyli.bib"
+  date=$(date +%F_%T)
+  cp $bib bib_back/$bib.$date
+  bibtool --preserve.key.case=on --check.double.delete=on -s -d -i $bib -o $bib
+}
+
+function bibfileadd () {
+  date=$(date +%F_%T)
+  dir="/Users/rayli/Dropbox/Latex/"
+  bib_name="rayyli.bib"
+  bib=$dir/$bib_name
+  bib_back=$dir/bib_back/$bib_name.$date
+  cp $bib $bib_back
+  bibtool --preserve.key.case=on --check.double.delete=on -s -d -i $bib $1 -o $bib
+}
+
+# add file by URL
+function bibadd () {
+  tmpfile="tmp_AASDFASDF.bib"
+  url=$(echo $1 | sed "s/\/rec\//\/rec\/bib2\//")
+  echo $url
+  curl $url | sed "/\@proceedings/,/^}$/d" | sed "s/DBLP\(.*\)\///" > $tmpfile
+  cat $tmpfile
+  bibfileadd $tmpfile
+  rm -f $tmpfile
+}
+
+# find bib entries on DBLP by key
+function bibfind () {
+  name=$(echo $1 | sed 's/\([A-Z]\)/ \1/g' | awk '{print $1;}')
+  year=$(echo $1 | grep -oE '[0-9]+')
+  if [ $((10#$year)) -le 30 ]; then
+    year=20"$year";
+  else
+    year=19"$year";
+  fi
+  echo $year
+  q="$name%20$year"
+  url="http://dblp.dagstuhl.de/search/publ/api?q=$q&format=json"
+  curl $url | grep $1
+}
+
+function bibfindgeneral () {
+  q=$(echo $1 | sed "s/ /\%20/g")
+  url="http://dblp.dagstuhl.de/search/publ/api?q=$q&format=json"
+  curl $url
+}
+
+#
+#function bibdirectfind () {
+#  # author is $1, search is $2
+#  initial=$(echo ${1:0:1}  | tr '[:upper:]' '[:lower:]')
+#  echo $initial
+#  curl http://dblp.dagstuhl.de/pers/tb2/$initial/$1.bib | sed -n -e "/$2/,/^}$/ p"  | sed "s/DBLP.*$2/$2/"
+#}
+#
+#function bibauthorfind () {
+#  curl "http://dblp.org/search/author/api?q=$1&format=json"
+#}
 
 function lpdf_ref () {
   x=${1%%.*}
@@ -44,6 +107,11 @@ function lpdf_soln() {
     mv -f $x.pdf $x_soln.pdf
     open $x_soln.pdf;
   fi
+}
+
+function lpdf_all() {
+  lpdf_soln $1;
+  lpdf_nosoln $1;
 }
 
 function lxe () {
