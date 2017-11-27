@@ -1,17 +1,17 @@
 %%%%%% Styling %%%%%%
 
 \newcounter{qcounter}
-\usepackage{graphicx, mathtools, amssymb, latexsym, amsmath, amsfonts, amsthm,bbm}
-\usepackage{array, fancyhdr, xcolor, bm, listings, tikz, soul, xcolor,titlesec, cancel,ifthen}
+\usepackage{graphicx, mathtools, amssymb, latexsym, amsmath, amsfonts, amsthm,bbm, tikz}
 \usepackage[toc,page]{appendix}
-%\usepackage[style=alphabetic]{biblatex}
-%\usepackage[hidelinks]{hyperref}
-%\pagestyle{fancy}
-%\hypersetup{colorlinks=false}
 
-\usetikzlibrary{positioning,calc,backgrounds, shapes}
-\newcommand{\tikzmark}[1]{\tikz[overlay,remember picture] \node (#1) {};}
 
+
+
+
+
+%%%%% PERSONAL DOCUMENT MACROS %%%%%%%
+
+\usepackage{array, fancyhdr, xcolor, bm, listings, soul, xcolor,titlesec, cancel,ifthen}
 
 \setlength{\textheight}{9in}
 \setlength{\textwidth}{6.5in}
@@ -21,9 +21,6 @@
 \setlength{\headwidth}{6.5in}
 \setlength{\oddsidemargin}{0in}
 \setlength{\evensidemargin}{0in}
-%\setlength{\leftmargin}{-0.5in}
-%\setlength{\rightmargin}{-0.5in}
-%\setlength{\parindent}{0pc}
 \setlength{\parskip}{0in}
 
 \usepackage{hyperref}
@@ -52,34 +49,6 @@
 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-
-
-%%%%%%%%%%%%%%%%%%%% Tikz %%%%%%%%%%%%%%%%%%%%
-
-\tikzstyle{43block}=[draw,shape=rectangle,shape aspect=1.33,minimum size=4em]
-
-
-
-
-
-
-
-
-
-
-
-
-
-%%%%%% Macros %%%%%%
-
-%%% Text Mode %%%
 
 % Theorems
 \theoremstyle{plain}
@@ -105,11 +74,11 @@
 \newtheorem{example}[theorem]{Example}
 \newtheorem{examples}[theorem]{Examples}
 \newtheorem{question}[theorem]{Question}
+\newtheorem{answer}[theorem]{Answer}
 \newtheorem{problem}[theorem]{Problem}
 \newtheorem{exercise}[theorem]{Exercise}
 \newtheorem{solution}{Solution}
 \newtheorem{idea}{Idea}
-\newtheorem{intuition}{Intuition}
 \newtheorem*{theorem*}{Theorem}
 \newtheorem*{definition*}{Definition}
 \newtheorem*{remark*}{Remark}
@@ -119,44 +88,86 @@
 \newtheorem*{question*}{Question}
 \newtheorem*{problem*}{Problem}
 \newtheorem*{solution*}{Solution}
-\newtheorem*{intuition*}{Intuition}
 \newtheorem*{idea*}{Idea}
 \newtheorem*{conjecture*}{Conjecture}
 
-%\newcommand{\proof}[1]{\begin{proof}#1\end{proof}}
-\newcommand{\btheorem}{\begin{theorem}}
-\newcommand{\etheorem}{\end{theorem}}
-\newcommand{\bproblem}{\begin{problem}}
-\newcommand{\eproblem}{\end{problem}}
-\newcommand{\bfact}{\begin{fact}}
-\newcommand{\efact}{\end{fact}}
-\newcommand{\bexercise}{\begin{exercise}}
-\newcommand{\eexercise}{\end{exercise}}
-\newcommand{\bclaim}{\begin{claim}}
-\newcommand{\eclaim}{\end{claim}}
-\newcommand{\bcorollary}{\begin{corollary}}
-\newcommand{\ecorollary}{\end{corollary}}
-\newcommand{\bnotation}{\begin{notation}}
-\newcommand{\enotation}{\end{notation}}
-\newcommand{\bremark}{\begin{remark}}
-\newcommand{\eremark}{\end{remark}}
-\newcommand{\blemma}{\begin{lemma}}
-\newcommand{\elemma}{\end{lemma}}
-\newcommand{\bexample}{\begin{example}}
-\newcommand{\eexample}{\end{example}}
-\newcommand{\bdefinition}{\begin{definition}}
-\newcommand{\edefinition}{\end{definition}}
-\newcommand{\bproof}{\begin{proof}}
-\newcommand{\eproof}{\end{proof}}
+
+%%%%% /PERSONAL DOCUMENT MACROS %%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%% Tikz %%%%%%%%%%%%%%%%%%%%
+
+
+\usetikzlibrary{positioning,decorations.pathreplacing,calc,backgrounds, shapes}
+\newcommand{\tikzmark}[1]{\tikz[overlay,remember picture] \node (#1) {};}
+
+
+\tikzstyle{43block}=[draw,shape=rectangle,shape aspect=1.33,minimum size=4em]
+
+%%%%%%%%%%%%%%%%%%%% ./Tikz %%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+%%%%%%%%%%%%%% FUNCTION SPECIFIC MACROS %%%%%%%%%%%%%%%
+
+\usepackage{thmtools, xypic}
+
+% LIVE TEXING MACROS
+\declaretheoremstyle[
+  headfont=\color{blue}\normalfont\bfseries,
+  bodyfont=\color{blue}\normalfont\itshape,
+]{colorblue}
+
+\declaretheorem[
+  style=colorblue,
+  name=Question,
+  sibling=theorem,
+]{que}
+\declaretheorem[
+  style=colorblue,
+  name=Answer,
+  sibling=theorem,
+]{ans}
+
+\newcommand{\note}[1]{{\color{red} {\small [Note: #1]}}}
 \newcommand{\sketch}[1]{\begin{proof}[Sketch]#1\end{proof}}
+\newcommand{\pb}[2]{\left\{\parbox{#1}{#2}\right\}}
 
 
+\newcommand\timestamp[1]{\begin{flushright}\textbf{#1}\end{flushright}}
+\newcommand{\ntikzmark}[2]{#2\thinspace\tikz[overlay,remember picture,baseline=(#1.base)]{\node[inner sep=0pt] (#1) {};}}
+\newcommand{\makebrace}[3]{%
+    \begin{tikzpicture}[overlay, remember picture]
+        \draw [decoration={brace,amplitude=0.5em},decorate]
+        let \p1=(#1), \p2=(#2) in
+        ({max(\x1,\x2)}, {\y1+0.8em}) -- node[right=0.6em, align=center] {#3} ({max(\x1,\x2)}, {\y2});
+    \end{tikzpicture}
+}
+
+
+\usepackage{stmaryrd}
+\newcommand{\llbr}{\llbracket}
+\newcommand{\rrbr}{\rrbracket}
 
 
 
 
 
 %%%% FOR MOP HANDOUTS %%%%
+
+% In handouts, to debug, \providecommand\showsoln{1}, \providecommand\showhints{1}
 
 % Use the bash function when compiling
 %function lpdf_soln() {
@@ -167,14 +178,23 @@
 %    open $x_soln.pdf;
 %  fi
 %}
-\renewcommand\solution[1]{\ifdefined\showsoln\ifthenelse{\equal{\showsoln}{1}}{\begin{solution*}#1\end{solution*}\fi}{}}
+\newcommand\ifsoln[1]{\ifdefined\showsoln\ifthenelse{\equal{\showsoln}{1}}{#1}{}\fi}
+\newcommand\ifnosoln[1]{\ifdefined\showsoln\ifthenelse{\equal{\showsoln}{0}}{#1}{}\else #1\fi}
+\renewcommand\solution[1]{\ifdefined\showsoln\ifthenelse{\equal{\showsoln}{1}}{\begin{solution*}#1\end{solution*}}{}\fi}
 \newcommand\soln[1]{\solution{#1}}
+\renewcommand\hint[1]{{\ifdefined\showhints\ifthenelse{\equal{\showsoln}{1}}{\endnote{#1}}{}\fi}}
 
-%\newtheoremstyle{named}{}{}{\itshape}{}{\bfseries}{.}{5pt plus 1pt minus 1pt}
-%                       {\thmname{ #3}\thmnumber{ #2}}
-%\theoremstyle{named}
-%\newtheorem{nt}{Theorem}
-%\newtheorem*{nt*}{Theorem}
+
+%%%%%%%%%%%%%% ./FUNCTION SPECIFIC MACROS %%%%%%%%%%%%%%%
+
+
+
+
+
+
+%%%%%% GENERAL MACROS %%%%%%
+
+%%% Text Mode %%%
 
 %colors
 \newcommand\red[1]{{\color{red} #1}}
@@ -206,17 +226,22 @@
 \newcommand{\textmeas}{\text{meas }}
 \newcommand{\textand}{\text{and }}
 \newcommand{\uu}{\underline}
-\def\bal#1\eal{\begin{align*}#1\end{align*}}
-\def\beq#1\eeq{\begin{equation}#1\end{equation}}
-\def\bitem#1\eitem{\begin{itemize*}#1\end{itemize*}}
-\def\bcomment#1\ecomment{\begin{comment}#1\end{comment}}
 \newcommand{\tikzcenter}[1]{\begin{center}\begin{tikzpicture}#1\end{tikzpicture}\end{center}}
 \newcommand{\centertikz}[1]{\begin{center}\begin{tikzpicture}#1\end{tikzpicture}\end{center}}
 \newcommand{\inlinetikz}[1]{\tikz[scale=0.2]{#1}}
 \newcommand{\case}[1]{\left\{\begin{matrix}#1\end{matrix}\right.}
 \newcommand{\ignore}[1]{}
+\newcommand\tsup{\textsuperscript}
+
+
+
+
+% Collaboration
 \newcommand{\mynote}[2]{\marginpar{\tiny {\bf {#2}:} \sf {#1}}}
-\newcommand{\raysays}[1]{{\color{red} {\small [Ray: #1]}}}
+\newcommand{\ryl}[1]{{\color{red} {\small [Ray: #1]}}}
+\newcommand{\raysays}{\ryl}
+\newcommand{\intuit}[1]{{\color{blue} {\small [Intuition: #1]}}}
+\newcommand{\intuition}{\intuit}
 \newcommand{\raynote}[1]{{\color{red} \mynote{#1}{RL}}} % Ray's note
 \newcommand{\open}{\textbf{{Open}} }
 \newcommand{\todo}[1]{{\color{red} {\small [TODO: #1]}}}
@@ -225,10 +250,6 @@
 \newcommand\FILLIN{\TODO{FILL IN}}
 \newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
 \newcommand{\centered}[1]{\begin{center}{#1}\end{center}}
-\newcommand\tsup{\textsuperscript}
-\newcommand\timestamp[1]{\begin{flushright}\textbf{#1}\end{flushright}}
-
-
 %%% Math Mode %%%
 
 %% Macros %%
@@ -247,7 +268,7 @@
 \newcommand\izinf{_{i=0}^\infty}
 \newcommand{\fn}[2]{:#1\to#2}
 \newcommand{\m}[1]{$#1$\,}
-\newcommand{\q}[1]{\stackrel{?}{#1}}
+%\newcommand{\q}[1]{\stackrel{?}{#1}}
 \newcommand{\ub}{\underbrace}
 
 % matrices for displayed expressions
@@ -275,20 +296,13 @@
 \newcommand{\ba}[1]{\lb#1\rb}
 \newcommand{\lbr}{\left\{}
 \newcommand{\rbr}{\right\}}
-\newcommand{\br}[1]{\lbr#1\rbr}
-\newcommand{\bra}[1]{\lbr#1\rbr}
 \newcommand{\lf}{\lfloor}
 \newcommand{\rf}{\rfloor}
-\newcommand{\Lf}{\left\lfloor}
-\newcommand{\Rf}{\right\rfloor}
 \newcommand{\floor}[1]{\lf {#1} \rf}
-\newcommand{\Floor}[1]{\Lf {#1} \Rf}
 \newcommand{\lc} {\lceil}
 \newcommand{\rc} {\rceil}
-\newcommand{\Lc} {\big\lceil}
-\newcommand{\Rc} {\big\rceil}
-\newcommand{\ceil}[1]{\lc {#1}\rc}
-\newcommand{\Ceil}[1]{\Lc {#1}\Rc}
+\newcommand{\ceil}[1]{\lceil {#1}\rceil}
+\newcommand{\Ceil}[1]{\big\lceil {#1}\big\rceil}
 \newcommand{\<}{\langle}
 \renewcommand{\>}{\rangle}
 \newcommand{\ab}[1]{\langle#1\rangle}
@@ -311,6 +325,10 @@
 \newcommand\sq{^{2}}
 \newcommand\sar{^*}
 \newcommand\dg{^{\circ}}
+\newcommand\bd{_\bullet} % bd for ``bullet down''
+\newcommand\bu{^\bullet} % bu for ``bullet up''
+\newcommand\bra[1]{\langle #1|}
+\newcommand\ket[1]{|#1\rangle}
 \newcommand\directsum{\bigoplus}
 \newcommand\dsum{\bigoplus}
 \newcommand\norm[1]{\left\lVert#1\right\rVert}
@@ -322,6 +340,8 @@
 \newcommand\wedges{\many\wedge}
 \newcommand\normal{\triangleleft\,}
 \newcommand\sqrteps{\sqrt\eps}
+\newcommand{\inj}{\hookrightarrow}
+\newcommand{\surj}{\twoheadrightarrow}
 \newcommand{\defeq}{\vcentcolon=}
 \newcommand{\eqdef}{=\vcentcolon}
 \newcommand{\sigmastar}{\Sigma^*}
@@ -329,7 +349,7 @@
 \newcommand{\lap}[1]{\calL\br{#1}}
 \newcommand{\tild}{\widetilde}
 \newcommand{\phitilde}{\tild{\varphi}}
-\newcommand{\id}[1]{^{(#1)}}
+\newcommand{\ind}[1]{^{(#1)}}
 \def\nab{\nabla}
 \newcommand\eps{\epsilon}
 \newcommand\lam{\lambda}
@@ -345,6 +365,13 @@
 \newcommand{\al}[1]{{\aleph_{#1}}}
 \newcommand{\leb}{\calL^N}
 \newcommand{\lebo}{\calL_o^N}
+\newcommand{\op}{\oplus}
+\newcommand{\ot}{\otimes}
+\newcommand{\bwedge}{{\textstyle{\bigwedge}}}
+%\newcommand{\bop}{\bigoplus}
+%\newcommand{\bot}{\bigotimes}
+
+\newcommand{\incl}{\xhookrightarrow}
 
 % arrows
 \newcommand\lrarrow {\leftrightarrow}
@@ -403,9 +430,10 @@
 \newcommand\randZ{\bm Z}
 \newcommand\X{\rX}
 \newcommand\Y{\rY}
-\newcommand\Z{\rZ}
+\newcommand\Z{\ZZ}
 \newcommand\ZZn{\ZZ/n\ZZ}
 \newcommand\ZZp{\ZZ/p\ZZ}
+\newcommand\ZG{{\ZZ G}}
 \renewcommand\v[1]{\vec {\bm #1}}
 
 \newcommand\ZZ{\mathbb{Z}}
@@ -631,9 +659,9 @@
 \DeclareMathOperator*\unsat{unsat}
 \DeclareMathOperator*\interior{int}
 \DeclareMathOperator*\cl{cl}
-\DeclareMathOperator*\ot{ot}
 \DeclareMathOperator*\height{ht}
-\DeclareMathOperator*\iden{id}
+\newcommand\id{\text{id}}
+\newcommand\iden{\text{id}}
 \DeclareMathOperator*\Seq{Seq}
 \DeclareMathOperator*\range{range}
 \DeclareMathOperator*\domain{dom}
@@ -654,6 +682,25 @@
 \DeclareMathOperator*\OnAdv{OnAdv}
 \DeclareMathOperator*\crss{cr}
 \DeclareMathOperator*\cis{cis}
+\DeclareMathOperator*\pow{pow}
+\DeclareMathOperator*\Supp{Supp}
+\DeclareMathOperator*\End{End}
+\DeclareMathOperator*\Mat{Mat}
+\DeclareMathOperator*\VF{VF}
+\newcommand{\Hom}{\textnormal{Hom}}
+\newcommand{\Map}{\textnormal{Map}}
+\newcommand{\Tor}{\textnormal{Tor}}
+\newcommand{\Ext}{\textnormal{Ext}}
+\newcommand{\GL}{\textnormal{GL}}
+\newcommand{\GS}{\textnormal{GS}}
+\newcommand{\SL}{\textnormal{SL}}
+\newcommand{\Tr}{\textnormal{Tr}}
+\newcommand{\Tow}{\textnormal{Tow}}
+\newcommand{\Signature}{\textnormal{Signature}}
+\DeclareMathOperator*\coker{coker}
+\DeclareMathOperator*\Bilinear{Bilinear}
+\DeclareMathOperator*\Ann{Ann}
+\DeclareMathOperator*\Torsion{Torsion}
 \newcommand\BDC{\textnormal{BDC}}
 \newcommand\outdeg{\textnormal{outdeg}}
 \newcommand\indeg{\textnormal{indeg}}

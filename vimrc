@@ -19,7 +19,7 @@ inoremap <C-F> ()<Left>
 au BufNewFile,BufRead *.tex inoremap <C-T> <Esc>I\{<Esc>A}<Esc>yyp<Up>I<Right>begin<Esc><Down>I<Right>end<Esc><Up>A
 "au BufNewFile,BufRead *.tex inoremap <C-I> <Bslash>textit{}<Left>
 au BufNewFile,BufRead *.tex inoremap <C-D> $$<++><Left><Left><Left><Left><Left>
-au BufNewFile,BufRead *.tex noremap <C-D> wbi$<Esc>ea$<Esc>
+au BufNewFile,BufRead *.tex noremap <C-D> WBi$<Esc>Ea$<Esc>
 au BufNewFile,BufRead *.tex inoremap <C-F> ()<++><Left><Left><Left><Left><Left>
 "au BufNewFile,BufRead *.tex inoremap <C-G> {}<++><Left><Left><Left><Left><Left>
 au BufNewFile,BufRead *.tex inoremap <C-B> <Bslash>{<Bslash>}<++><Left><Left><Left><Left><Left><Left>
@@ -29,6 +29,9 @@ au BufNewFile,BufRead *.tex inoremap <C-V> <Esc>I%<Left>
 "au BufNewFile,BufRead *.tex inoremap <C-A> <Bslash>begin{align}<CR><Bslash>end{align}<Esc>O
 
 
+"hacks for ocaml
+au BufNewFile,BufRead *.ml noremap <C-t> :MerlinTypeOf<CR>
+au BufNewFile,BufRead *.ml inoremap <C-t> <Esc>:MerlinTypeOf<CR>
 
 set textwidth=90
 
@@ -38,6 +41,7 @@ set sw=2
 set ts=2
 
 au FileType python setl sw=4 ts=4
+au BufNewFile,BufRead *.tex setl spell
 au BufNewFile,BufRead *.tex setl ft=tex textwidth=0
 au BufNewFile,BufRead *.md setl ft=tex textwidth=0
 au BufNewFile,BufRead *.txt setl textwidth=0

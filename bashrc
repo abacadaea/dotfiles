@@ -5,6 +5,19 @@ export LSCOLORS=GxFxCxDxBxegedabagaced
 export EDITOR='vim'
 export BIBFILE="/Users/rayli/Dropbox/Latex/rayyli.bib"
 
+function bibcd () {
+  cd "/Users/rayli/Dropbox/Latex/"
+}
+
+function bibdiff () {
+  (cd "/Users/rayli/Dropbox/Latex/"; git diff rayyli.bib)
+}
+
+function bibcommit () {
+  date=$(date +%F_%T)
+  (cd "/Users/rayli/Dropbox/Latex/"; git add rayyli.bib; git commit -m "Autoupdate rayyli.bib with new entries")
+}
+
 function bibclean () {
   cd "/Users/rayli/Dropbox/Latex/"
   bib="rayyli.bib"
@@ -20,7 +33,7 @@ function bibfileadd () {
   bib=$dir/$bib_name
   bib_back=$dir/bib_back/$bib_name.$date
   cp $bib $bib_back
-  bibtool --preserve.key.case=on --check.double.delete=on -s -d -i $bib $1 -o $bib
+  bibtool --preserve.key.case=on --check.double.delete=on -s -d -i $1 $bib -o $bib
 }
 
 # add file by URL
@@ -36,7 +49,7 @@ function bibadd () {
 
 # find bib entries on DBLP by key
 function bibfind () {
-  name=$(echo $1 | sed 's/\([A-Z]\)/ \1/g' | awk '{print $1;}')
+  name=$(echo $1 | sed 's/\([A-Z0-9]\)/ \1/g' | awk '{print $1;}')
   year=$(echo $1 | grep -oE '[0-9]+')
   if [ $((10#$year)) -le 30 ]; then
     year=20"$year";
@@ -46,6 +59,7 @@ function bibfind () {
   echo $year
   q="$name%20$year"
   url="http://dblp.dagstuhl.de/search/publ/api?q=$q&format=json"
+  echo $url
   curl $url | grep $1
 }
 
