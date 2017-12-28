@@ -17,14 +17,18 @@ nmap <CR> i<CR><Esc>
 
 inoremap <C-F> ()<Left>
 au BufNewFile,BufRead *.tex inoremap <C-T> <Esc>I\{<Esc>A}<Esc>yyp<Up>I<Right>begin<Esc><Down>I<Right>end<Esc><Up>A
-"au BufNewFile,BufRead *.tex inoremap <C-I> <Bslash>textit{}<Left>
-au BufNewFile,BufRead *.tex inoremap <C-D> $$<++><Left><Left><Left><Left><Left>
+au BufNewFile,BufRead *.tex noremap <C-E> /\$<CR>xWhhvNl"axhs<CR>\begin{align}<CR><CR>\end{align}<CR><Esc>2k"ap>>
+au BufNewFile,BufRead *.tex vnoremap <C-D> c$$<Esc>P
+au BufNewFile,BufRead *.tex vnoremap <C-F> c\left(\right)<Esc>6hP
+au BufNewFile,BufRead *.tex vnoremap <C-G> c\left[\right]<Esc>6hP
+au BufNewFile,BufRead *.tex vnoremap <C-B> \left\{\right\}<Esc>7hP
 au BufNewFile,BufRead *.tex noremap <C-D> WBi$<Esc>Ea$<Esc>
-au BufNewFile,BufRead *.tex inoremap <C-F> ()<++><Left><Left><Left><Left><Left>
-"au BufNewFile,BufRead *.tex inoremap <C-G> {}<++><Left><Left><Left><Left><Left>
-au BufNewFile,BufRead *.tex inoremap <C-B> <Bslash>{<Bslash>}<++><Left><Left><Left><Left><Left><Left>
+au BufNewFile,BufRead *.tex inoremap <C-D> $$<++><Esc>4hi
+au BufNewFile,BufRead *.tex inoremap <C-F> ()<++><Esc>4hi
+au BufNewFile,BufRead *.tex inoremap <C-G> []<++><Esc>4hi
+au BufNewFile,BufRead *.tex inoremap <C-B> \{\}<++><Esc>5hi
 "au BufNewFile,BufRead *.tex inoremap <C-H> []<++><Left><Left><Left><Left><Left>
-au BufNewFile,BufRead *.tex inoremap <C-V> <Esc>I%<Left>
+"au BufNewFile,BufRead *.tex inoremap <C-V> <Esc>I%<Left>
 "au BufNewFile,BufRead *.tex inoremap <C-E> <Bslash>begin{equation}<CR><Bslash>end{equation}<Esc>O
 "au BufNewFile,BufRead *.tex inoremap <C-A> <Bslash>begin{align}<CR><Bslash>end{align}<Esc>O
 
