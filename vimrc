@@ -17,11 +17,11 @@ nmap <CR> i<CR><Esc>
 
 inoremap <C-F> ()<Left>
 au BufNewFile,BufRead *.tex inoremap <C-T> <Esc>I\{<Esc>A}<Esc>yyp<Up>I<Right>begin<Esc><Down>I<Right>end<Esc><Up>A
-au BufNewFile,BufRead *.tex noremap <C-E> /\$<CR>xWhhvNl"axhs<CR>\begin{align}<CR><CR>\end{align}<CR><Esc>2k"ap>>
-au BufNewFile,BufRead *.tex vnoremap <C-D> c$$<Esc>P
-au BufNewFile,BufRead *.tex vnoremap <C-F> c\left(\right)<Esc>6hP
-au BufNewFile,BufRead *.tex vnoremap <C-G> c\left[\right]<Esc>6hP
-au BufNewFile,BufRead *.tex vnoremap <C-B> \left\{\right\}<Esc>7hP
+au BufNewFile,BufRead *.tex noremap <C-E> /\$<CR>xWhhvNl"axhs<CR>\begin{align}<CR><CR>\end{align}<CR><Esc>2k"ap>>/asdf<CR>
+"au BufNewFile,BufRead *.tex vnoremap <C-D> c$$<Esc>P
+"au BufNewFile,BufRead *.tex vnoremap <C-F> c\left(\right)<Esc>6hP
+"au BufNewFile,BufRead *.tex vnoremap <C-G> c\left[\right]<Esc>6hP
+"au BufNewFile,BufRead *.tex vnoremap <C-B> \left\{\right\}<Esc>7hP
 au BufNewFile,BufRead *.tex noremap <C-D> WBi$<Esc>Ea$<Esc>
 au BufNewFile,BufRead *.tex inoremap <C-D> $$<++><Esc>4hi
 au BufNewFile,BufRead *.tex inoremap <C-F> ()<++><Esc>4hi
