@@ -286,6 +286,7 @@ call s:Tex_EnvMacros('TDE', '&Theorem.',  'definition')
 call s:Tex_EnvMacros('TPR', '&Theorem.',  'proposition')
 call s:Tex_EnvMacros('TRE', '&Theorem.',  'remark')
 call s:Tex_EnvMacros('TCO', '&Theorem.',  'corollary')
+call s:Tex_EnvMacros('TSO', '&Theorem.',  'solution')
 
 call s:Tex_EnvMacros('theorem*', '&Theorem.',  'theorem*')
 call s:Tex_EnvMacros('example*', '&Theorem.',  'example*')
@@ -296,6 +297,7 @@ call s:Tex_EnvMacros('question*', '&Theorem.',  'question*')
 call s:Tex_EnvMacros('definition*', '&Theorem.',  'definition*')
 call s:Tex_EnvMacros('proposition*', '&Theorem.',  'proposition*')
 call s:Tex_EnvMacros('corollary*', '&Theorem.',  'corollary*')
+call s:Tex_EnvMacros('solution*', '&Theorem.',  'solution*')
 if g:Tex_CatchVisMapErrors
 	exe 'vnoremap '.g:Tex_Leader2."   :\<C-u>call ExecMap('".g:Tex_Leader2."', 'v')\<CR>"
 endif

@@ -149,9 +149,10 @@ if !exists('s:doneMappings')
 	call IMAP(g:Tex_Leader.'R', '\ryl{<++>}<++>', 'tex')
 
 	call IMAP (g:Tex_Leader.'|', '|<++>|<++>', "tex")
+	call IMAP (g:Tex_Leader.'.', '\cdot', "tex")
 	call IMAP('\verb', '\verb|<++>|<++>', 'tex')
-	call IMAP('\eps', '\varepsilon', 'tex')
-	call IMAP('\phi', '\varphi', 'tex')
+	call IMAP('\eps', '\varepsilon ', 'tex')
+	call IMAP('\phi', '\varphi ', 'tex')
 	call IMAP('\binom', '\binom{<++>}{<++>}<++>', 'tex')
 	call IMAP('\text', '\text{<++>}<++>', 'tex')
 	call IMAP('\intuit', '\intuit{<++>}<++>', 'tex')
@@ -159,6 +160,8 @@ if !exists('s:doneMappings')
 	call IMAP('\xleft', '\xleftarrow{<++>}<++>', 'tex')
 	call IMAP('\sum', '\sum_{<++>}^{<++>} <++>', 'tex')
 	call IMAP('\prod', '\prod{<++>}^{<++>} <++>', 'tex')
+	call IMAP('\op', '\oplus ', 'tex')
+	call IMAP('\ot', '\otimes ', 'tex')
 	" }}}
 	" ProtectLetters: sets up indentity maps for things like ``a {{{
 	" " Description: If we simply do
