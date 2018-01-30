@@ -206,9 +206,14 @@ function backup () {
   cp $1 ~/Dropbox/backup
 }
 
+function cd {
+	builtin cd "$@" && ls -F
+}
+
 alias rm='rm -i'
 alias cp='cp -iv'
 alias mv='mv -iv'
+alias l='ls -la'
 alias sl='ls'
 
 alias grep="grep --color=auto"

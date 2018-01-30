@@ -5,6 +5,16 @@ set so=999
 set pastetoggle=<F3>
 "set dictionary+=/usr/share/dict/words
 
+" Center searched text
+" http://vim.wikia.com/wiki/Make_search_results_appear_in_the_middle_of_the_screen
+nnoremap n nzz
+nnoremap N Nzz
+nnoremap p pzz
+nnoremap P Pzz
+nnoremap * *zz
+nnoremap # #zz
+nnoremap g* g*zz
+nnoremap g# g#zz
 
 "au BufNewFile,BufRead *.tex set cole=2
 "au BufNewFile,BufRead *.tex let g:tex_conceal="adgm"
@@ -21,7 +31,7 @@ nmap <CR> i<CR><Esc>
 
 inoremap <C-F> ()<Left>
 au BufNewFile,BufRead *.tex inoremap <C-T> <Esc>I\{<Esc>A}<Esc>yyp<Up>I<Right>begin<Esc><Down>I<Right>end<Esc><Up>A
-au BufNewFile,BufRead *.tex noremap <C-E> /\$<CR>xWhhvNl"axhs<CR>\begin{align}<CR><CR>\end{align}<CR><Esc>2k"ap>>/asdf<CR>
+au BufNewFile,BufRead *.tex noremap <C-E> <Esc>/\$<CR>xvNl"axhs<CR>\begin{align}<CR><CR>\end{align}<CR><Esc>2k"ap>>/asdf<CR>
 au BufNewFile,BufRead *.tex noremap <C-D> WBi$<Esc>Ea$<Esc>
 au BufNewFile,BufRead *.tex inoremap <C-D> $$<++><Esc>4hi
 au BufNewFile,BufRead *.tex inoremap <C-F> ()<++><Esc>4hi
