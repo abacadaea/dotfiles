@@ -90,7 +90,7 @@ function bibadd () {
 function bibfind () {
   if [[ "$1" != "${1/ /}" ]]; then
     q=$(echo $1 | sed "s/ /\%20/g")
-    url="http://dblp.dagstuhl.de/search/publ/api?q=$q&format=json"
+    url="https://dblp.dagstuhl.de/search/publ/api?q=$q&format=json"
     curl $url
   else
     name=$(echo $1 | sed 's/\([A-Z0-9]\)/ \1/g' | awk '{print $1;}')
@@ -147,6 +147,7 @@ function lpdf_pic_ref () {
 
 function lpdf () {
   x=${1%%.*}
+  #if latexmk $x.tex -pdf; then
   if pdflatex $x.tex; then
     open $x.pdf;
   fi
@@ -209,6 +210,12 @@ function backup () {
 function cd {
 	builtin cd "$@" && ls -F
 }
+
+alias ..='\cd ..'
+alias ...='\cd ../..'
+alias ....='\cd ../../..'
+alias .....='\cd ../../../..'
+alias ......='\cd ../../../../..'
 
 alias rm='rm -i'
 alias cp='cp -iv'

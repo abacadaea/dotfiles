@@ -26,6 +26,9 @@ let s:description ="\\begin{description}\<cr>\\item[<+label+>]<++>\<cr>\\end{des
 let s:document =   "\\documentclass[<+options+>]{<+class+>}\<cr>\<cr>\\begin{document}\<cr><++>\<cr>\\end{document}"
 let s:tabular = "\\begin{tabular}[<+hbtp+>]{<+format+>}\<cr><++>\<cr>\\end{tabular}"
 let s:tabular_star = "\\begin{tabular*}[<+hbtp+>]{<+format+>}\<cr><++>\<cr>\\end{tabular*}"
+let s:tikz = "\\begin{center}\<cr>\\begin{tikzpicture}\<cr><++>\<cr>\\end{tikzpicture}\<cr>\\end{center}"
+let s:left_right_matrix = "\\left\\{\<cr>\\begin{tabular}{ll}\<cr><++> & <++>\\\\\<cr><++> & <++>\\\\\<cr>\\end{tabular}\<cr>\\right."
+let s:optimization = "\\text{maximize}\\qquad & <++>\\nonumber\\\\\<cr>\\text{subject to}\\qquad & <++>"
 
 " }}}
 " define environments with special behavior in line wise selection. {{{
@@ -221,8 +224,10 @@ call s:Tex_SpecialMacros('', '&Tables.', 'tabular*', s:tabular_star)
 call s:Tex_EnvMacros('EMM', '&Matrix.', 'matrix')
 call s:Tex_EnvMacros('EPM', '&Matrix.', 'pmatrix')
 call s:Tex_EnvMacros('EBM', '&Matrix.', 'bmatrix')
-call s:Tex_EnvMacros('\pmat', '&Matrix.', 'bmatrix')
+call s:Tex_SpecialMacros('EOP', '&Matrix.', 'matrix', s:optimization)
+call s:Tex_SpecialMacros('ELR', '&Matrix.', 'matrix', s:left_right_matrix)
 call s:Tex_EnvMacros('\bmat', '&Matrix.', 'bmatrix')
+call s:Tex_EnvMacros('\pmat', '&Matrix.', 'pmatrix')
 " }}}
 " Math {{{
 call s:Tex_EnvMacros('EAL', '&Math.', 'align')
@@ -232,6 +237,7 @@ call s:Tex_EnvMacros('EEA', '&Math.', 'eqnarray')
 call s:Tex_EnvMacros('',    '&Math.', 'eqnarray*')
 call s:Tex_EnvMacros('EEQ', '&Math.', 'equation')
 call s:Tex_EnvMacros('EMA', '&Math.', 'math')
+call s:Tex_SpecialMacros('ETK', '&Math.', 'tikzpicture', s:tikz)
 " }}}
 " Structure {{{
 call s:Tex_SpecialMacros('EAR', 'Math.', 'array', s:array)
@@ -258,7 +264,7 @@ call s:Tex_EnvMacros('EOV', '&Structure.', 'overlay')
 call s:Tex_EnvMacros('ESL', '&Structure.', 'slide')
 " }}}
 " Sections {{{
-call s:Tex_SectionMacros('SPA', 'part')
+"call s:Tex_SectionMacros('SPA', 'part')
 call s:Tex_SectionMacros('SCH', 'chapter')
 call s:Tex_SectionMacros('SSE', 'section')
 call s:Tex_SectionMacros('SSS', 'subsection')
@@ -270,7 +276,7 @@ call s:Tex_SectionMacros('SSP', 'subparagraph')
 call s:Tex_SpecialMacros('', '', '-sepenv1-', ' :', 0)
 call s:Tex_SpecialMacros('EFI', '', 'figure', "\<C-r>=Tex_PutEnvironment('figure')\<CR>")
 call s:Tex_EnvMacros('', '', 'figure*')
-call s:Tex_EnvMacros('ELR', '', 'lrbox')
+"call s:Tex_EnvMacros('ELR', '', 'lrbox')
 call s:Tex_SpecialMacros('EMP', '', 'minipage', s:minipage)
 call s:Tex_SpecialMacros('EPI', '', 'picture', s:picture)
 " }}}

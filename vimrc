@@ -1,4 +1,5 @@
 ""TODO: Highlight '$th's, 'will', '\ref{eq:' and similar common latex errors.
+colorscheme koehler
 set nocp
 set number
 set so=999
@@ -9,8 +10,8 @@ set pastetoggle=<F3>
 " http://vim.wikia.com/wiki/Make_search_results_appear_in_the_middle_of_the_screen
 nnoremap n nzz
 nnoremap N Nzz
-nnoremap p pzz
-nnoremap P Pzz
+"nnoremap p pzz
+"nnoremap P Pzz
 nnoremap * *zz
 nnoremap # #zz
 nnoremap g* g*zz
@@ -50,7 +51,8 @@ set et
 set sw=2
 set ts=2
 
-au FileType python setl sw=4 ts=4
+au FileType java setl sw=4 ts=4 et
+au FileType python setl sw=4 ts=4 et
 au BufNewFile,BufRead *.tex setl spell
 au BufNewFile,BufRead *.tex setl ft=tex textwidth=0
 au BufNewFile,BufRead *.md setl ft=tex textwidth=0

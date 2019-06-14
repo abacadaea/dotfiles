@@ -70,7 +70,9 @@ if !exists('s:doneMappings')
 	call IMAP (g:Tex_Leader.'8', '\infty', "tex")
 	call IMAP (g:Tex_Leader.'/', '\frac{<++>}{<++>}<++>', "tex")
 	call IMAP ('//', '\frac{<++>}{<++>}<++>', "tex")
-	call IMAP (g:Tex_Leader.'%', '\frac{<++>}{<++>}<++>', "tex")
+	call IMAP ('\pfrac', '\left(\frac{<++>}{<++>}<++>\right)<++>', "tex")
+	call IMAP (g:Tex_Leader.'%d', '\frac{d<++>}{d<++>}<++>', "tex")
+	call IMAP (g:Tex_Leader.'%6', '\frac{\partial <++>}{\partial <++>}<++>', "tex")
 	call IMAP (g:Tex_Leader.'@', '\circ', "tex")
 	"call IMAP (g:Tex_Leader.'0', '^\circ', "tex")
 	call IMAP (g:Tex_Leader.'=', '\equiv', "tex")
@@ -97,31 +99,30 @@ if !exists('s:doneMappings')
 	" Greek Letters {{{
 	call IMAP(g:Tex_Leader.'a','\alpha','tex')
 	call IMAP(g:Tex_Leader.'b','\beta','tex')
-	"call IMAP(g:Tex_Leader.'c','\chi','tex')
+	call IMAP(g:Tex_Leader.'c','\chi','tex')
 	call IMAP(g:Tex_Leader.'d','\delta','tex')
 	call IMAP(g:Tex_Leader.'e','\varepsilon','tex')
-	"call IMAP(g:Tex_Leader.'f','\varphi','tex')
+	call IMAP(g:Tex_Leader.'f','\varphi','tex')
 	call IMAP(g:Tex_Leader.'g','\gamma','tex')
 	call IMAP(g:Tex_Leader.'h','\eta','tex')
 	call IMAP(g:Tex_Leader.'i','\iota','tex')
+	call IMAP(g:Tex_Leader.'j','\ell','tex')
 	call IMAP(g:Tex_Leader.'k','\kappa','tex')
 	call IMAP(g:Tex_Leader.'l','\lambda','tex')
 	call IMAP(g:Tex_Leader.'m','\mu','tex')
-	"call IMAP(g:Tex_Leader.'n','\nu','tex')
+	call IMAP(g:Tex_Leader.'n','\nu','tex')
 	call IMAP(g:Tex_Leader.'p','\pi','tex')
-	"call IMAP(g:Tex_Leader.'q','\theta','tex')
+	call IMAP(g:Tex_Leader.'q','\theta','tex')
 	"call IMAP(g:Tex_Leader.'r','\rho','tex')
 	call IMAP(g:Tex_Leader.'s','\sigma','tex')
-	"call IMAP(g:Tex_Leader.'t','\tau','tex')
-	call IMAP(g:Tex_Leader.'t','\TODO{<++>}<++>','tex')
-	call IMAP(g:Tex_Leader.'T','\TODO{<++>}<++>','tex')
+	call IMAP(g:Tex_Leader.'t','\tau','tex')
 	call IMAP(g:Tex_Leader.'u','\upsilon','tex')
 	call IMAP(g:Tex_Leader.'v','\varsigma','tex')
 	call IMAP(g:Tex_Leader.'w','\omega','tex')
 	call IMAP(g:Tex_Leader.'w','\wedge','tex')  " AUCTEX style
 	"call IMAP(g:Tex_Leader.'x','\xi','tex')
 	call IMAP(g:Tex_Leader.'y','\psi','tex')
-	"call IMAP(g:Tex_Leader.'z','\zeta','tex')
+	call IMAP(g:Tex_Leader.'z','\zeta','tex')
 	" not all capital greek letters exist in LaTeX!
 	" reference: http://www.giss.nasa.gov/latex/ltx-405.html
 	call IMAP(g:Tex_Leader.'D','\Delta','tex')
@@ -139,36 +140,100 @@ if !exists('s:doneMappings')
 	call IMAP(g:Tex_Leader.'o', '\omega(<++>)<++>', 'tex') " for complexity
 	call IMAP(g:Tex_Leader.'O', '\Omega(<++>)<++>', 'tex') " for complexity
 
-	call IMAP(g:Tex_Leader.'c', '\mathbb{C}', 'tex')
-	call IMAP(g:Tex_Leader.'f', '\mathbb{F}', 'tex')
-	call IMAP(g:Tex_Leader.'n', '\mathbb{N}', 'tex')
-	call IMAP(g:Tex_Leader.'q', '\mathbb{Q}', 'tex')
-	call IMAP(g:Tex_Leader.'r', '\mathbb{R}', 'tex')
-	call IMAP(g:Tex_Leader.'z', '\mathbb{Z}', 'tex')
+	call IMAP(g:Tex_Leader.'C', '\mathbb{C}', 'tex')
+	call IMAP(g:Tex_Leader.'F', '\mathbb{F}', 'tex')
+	call IMAP(g:Tex_Leader.'N', '\mathbb{N}', 'tex')
+	call IMAP(g:Tex_Leader.'Q', '\mathbb{Q}', 'tex')
+	call IMAP(g:Tex_Leader.'R', '\mathbb{R}', 'tex')
+	call IMAP(g:Tex_Leader.'Z', '\mathbb{Z}', 'tex')
 	call IMAP(g:Tex_Leader.'x', '\times ', 'tex')
 
-	call IMAP(g:Tex_Leader.'R', '\ryl{<++>}<++>', 'tex')
+	call IMAP(g:Tex_Leader.'r', '\ryl{<++>}<++>', 'tex')
+	call IMAP(g:Tex_Leader.'T','\TODO{<++>}<++>','tex')
 
 	call IMAP (g:Tex_Leader.'0', '\emptyset', "tex")
 	call IMAP (g:Tex_Leader.'|', '|<++>|<++>', "tex")
+	call IMAP ('\|', '\|<++>\|<++>', "tex")
+	"call IMAP ('||', '|<++>|<++>', "tex")
 	call IMAP (g:Tex_Leader.'.', '\cdot', "tex")
 	call IMAP('\verb', '\verb|<++>|<++>', 'tex')
 	call IMAP('\eps', '\varepsilon', 'tex')
-	call IMAP('\phi', '\varphi', 'tex')
+	"call IMAP('\phi', '\varphi', 'tex')
 	call IMAP('\binom', '\binom{<++>}{<++>}<++>', 'tex')
 	call IMAP('\ind', '\ind{<++>}<++>', 'tex')
 	call IMAP('\text', '\text{<++>}<++>', 'tex')
+	call IMAP('\note', '\note{<++>}<++>', 'tex')
+	call IMAP('\norm', '\norm{<++>}<++>', 'tex')
+	call IMAP('\widehat', '\widehat{<++>}<++>', 'tex')
+	call IMAP('\sqrt', '\sqrt{<++>}<++>', 'tex')
+	call IMAP('\floor', '\floor{<++>}<++>', 'tex')
+	call IMAP('\ceil', '\ceil{<++>}<++>', 'tex')
 	call IMAP('\intuit', '\intuit{<++>}<++>', 'tex')
 	call IMAP('\xright', '\xrightarrow{<++>}<++>', 'tex')
 	call IMAP('\xleft', '\xleftarrow{<++>}<++>', 'tex')
 	call IMAP('\over', '\overline{<++>}<++>', 'tex')
+	call IMAP('\int', '\int_{<++>}^{<++>} <++>', 'tex')
 	call IMAP('\sum', '\sum_{<++>}^{<++>} <++>', 'tex')
 	call IMAP('\prod', '\prod_{<++>}^{<++>} <++>', 'tex')
 	call IMAP('\bigcap', '\bigcap_{<++>}^{<++>}<++>', 'tex')
 	call IMAP('\bigcup', '\bigcup_{<++>}^{<++>}<++>', 'tex')
+	call IMAP('\bigwedge', '\bigwedge_{<++>}^{<++>}<++>', 'tex')
+	call IMAP('\bigvee', '\bigvee_{<++>}^{<++>}<++>', 'tex')
 	call IMAP('\substack', '\substack{<++> \\ <++>}<++>', 'tex')
 	call IMAP('\op', '\oplus ', 'tex')
 	call IMAP('\ot', '\otimes ', 'tex')
+  call IMAP('\bA', '\mathbb{A}', 'tex')
+  call IMAP('\bB', '\mathbb{B}', 'tex')
+  call IMAP('\bC', '\mathbb{C}', 'tex')
+  call IMAP('\bD', '\mathbb{D}', 'tex')
+  call IMAP('\bE', '\mathbb{E}', 'tex')
+  call IMAP('\bF', '\mathbb{F}', 'tex')
+  call IMAP('\bG', '\mathbb{G}', 'tex')
+  call IMAP('\bH', '\mathbb{H}', 'tex')
+  call IMAP('\bI', '\mathbb{I}', 'tex')
+  call IMAP('\bJ', '\mathbb{J}', 'tex')
+  call IMAP('\bK', '\mathbb{K}', 'tex')
+  call IMAP('\bL', '\mathbb{L}', 'tex')
+  call IMAP('\bM', '\mathbb{M}', 'tex')
+  call IMAP('\bN', '\mathbb{N}', 'tex')
+  call IMAP('\bO', '\mathbb{O}', 'tex')
+  call IMAP('\bP', '\mathbb{P}', 'tex')
+  call IMAP('\bQ', '\mathbb{Q}', 'tex')
+  call IMAP('\bR', '\mathbb{R}', 'tex')
+  call IMAP('\bS', '\mathbb{S}', 'tex')
+  call IMAP('\bT', '\mathbb{T}', 'tex')
+  call IMAP('\bU', '\mathbb{U}', 'tex')
+  call IMAP('\bV', '\mathbb{V}', 'tex')
+  call IMAP('\bW', '\mathbb{W}', 'tex')
+  call IMAP('\bX', '\mathbb{X}', 'tex')
+  call IMAP('\bY', '\mathbb{Y}', 'tex')
+  call IMAP('\bZ', '\mathbb{Z}', 'tex')
+  call IMAP(g:Tex_Leader.'BA', '\mathbb{A}', 'tex')
+  call IMAP(g:Tex_Leader.'BB', '\mathbb{B}', 'tex')
+  call IMAP(g:Tex_Leader.'BC', '\mathbb{C}', 'tex')
+  call IMAP(g:Tex_Leader.'BD', '\mathbb{D}', 'tex')
+  call IMAP(g:Tex_Leader.'BE', '\mathbb{E}', 'tex')
+  call IMAP(g:Tex_Leader.'BF', '\mathbb{F}', 'tex')
+  call IMAP(g:Tex_Leader.'BG', '\mathbb{G}', 'tex')
+  call IMAP(g:Tex_Leader.'BH', '\mathbb{H}', 'tex')
+  call IMAP(g:Tex_Leader.'BI', '\mathbb{I}', 'tex')
+  call IMAP(g:Tex_Leader.'BJ', '\mathbb{J}', 'tex')
+  call IMAP(g:Tex_Leader.'BK', '\mathbb{K}', 'tex')
+  call IMAP(g:Tex_Leader.'BL', '\mathbb{L}', 'tex')
+  call IMAP(g:Tex_Leader.'BM', '\mathbb{M}', 'tex')
+  call IMAP(g:Tex_Leader.'BN', '\mathbb{N}', 'tex')
+  call IMAP(g:Tex_Leader.'BO', '\mathbb{O}', 'tex')
+  call IMAP(g:Tex_Leader.'BP', '\mathbb{P}', 'tex')
+  call IMAP(g:Tex_Leader.'BQ', '\mathbb{Q}', 'tex')
+  call IMAP(g:Tex_Leader.'BR', '\mathbb{R}', 'tex')
+  call IMAP(g:Tex_Leader.'BS', '\mathbb{S}', 'tex')
+  call IMAP(g:Tex_Leader.'BT', '\mathbb{T}', 'tex')
+  call IMAP(g:Tex_Leader.'BU', '\mathbb{U}', 'tex')
+  call IMAP(g:Tex_Leader.'BV', '\mathbb{V}', 'tex')
+  call IMAP(g:Tex_Leader.'BW', '\mathbb{W}', 'tex')
+  call IMAP(g:Tex_Leader.'BX', '\mathbb{X}', 'tex')
+  call IMAP(g:Tex_Leader.'BY', '\mathbb{Y}', 'tex')
+  call IMAP(g:Tex_Leader.'BZ', '\mathbb{Z}', 'tex')
   call IMAP('\cA', '\mathcal{A}', 'tex')
   call IMAP('\cB', '\mathcal{B}', 'tex')
   call IMAP('\cC', '\mathcal{C}', 'tex')
@@ -257,19 +322,19 @@ if !exists('s:doneMappings')
   "   https://github.com/rudrab/vimf90/blob/master/plugin/imaps.vim
   " ]
 	" and |.
-	exec 'vnoremap <silent> '.g:Tex_Leader."( \<C-\\>\<C-N>:call VEnclose('( ', ' )', '(', ')')\<CR>"
-	exec 'vnoremap <silent> '.g:Tex_Leader."[ \<C-\\>\<C-N>:call VEnclose('[ ', ' ]', '[', ']')\<CR>"
-	exec 'vnoremap <silent> '.g:Tex_Leader."{ \<C-\\>\<C-N>:call VEnclose('\\{ ', ' \\}', '\\{', '\\}')\<CR>"
-	exec 'vnoremap <silent> '.g:Tex_Leader."$ \<C-\\>\<C-N>:call VEnclose('$', '$', '\\[', '\\]')\<CR>"
+	"exec 'vnoremap <silent> '.g:Tex_Leader."( \<C-\\>\<C-N>:call VEnclose('( ', ' )', '(', ')')\<CR>"
+	"exec 'vnoremap <silent> '.g:Tex_Leader."[ \<C-\\>\<C-N>:call VEnclose('[ ', ' ]', '[', ']')\<CR>"
+	"exec 'vnoremap <silent> '.g:Tex_Leader."{ \<C-\\>\<C-N>:call VEnclose('\\{ ', ' \\}', '\\{', '\\}')\<CR>"
+	"exec 'vnoremap <silent> '.g:Tex_Leader."$ \<C-\\>\<C-N>:call VEnclose('$', '$', '\\[', '\\]')\<CR>"
 
-	exec 'vnoremap <silent> '.g:Tex_Leader."l( \<C-\\>\<C-N>:call VEnclose('\\left( ', ' \\right)', '\\left(', '\\right)')\<CR>"
-	exec 'vnoremap <silent> '.g:Tex_Leader."l[ \<C-\\>\<C-N>:call VEnclose('\\left[ ', ' \\right]', '\\left[', '\\right]')\<CR>"
-	exec 'vnoremap <silent> '.g:Tex_Leader."l{ \<C-\\>\<C-N>:call VEnclose('\\left\\{ ', ' \\right\\}', '\\left\\{', '\\right\\}')\<CR>"
-  " RAY: Added these to auto left/right a pair of brackets
-	"exec 'vnoremap <silent> '.g:Tex_Leader."l \<C-\\>\<C-N>:call VEnclose('\\left', ' \\right', '\\left', '\\right')\<CR>"
-	exec "nnoremap \[ <Esc>/[<Cr>Nv%h\<C-\\>\<C-N>:call VEnclose('\\left', ' \\right', '\\left', '\\right')\<CR>"
-	exec "nnoremap \( <Esc>/(<Cr>Nv%h\<C-\\>\<C-N>:call VEnclose('\\left', ' \\right', '\\left', '\\right')\<CR>"
-	exec "nnoremap \{ <Esc>/\\\\{<Cr>Nvl%hh\<C-\\>\<C-N>:call VEnclose('\\left', ' \\right', '\\left', '\\right')\<CR>"
+	"exec 'vnoremap <silent> '.g:Tex_Leader."l( \<C-\\>\<C-N>:call VEnclose('\\left( ', ' \\right)', '\\left(', '\\right)')\<CR>"
+	"exec 'vnoremap <silent> '.g:Tex_Leader."l[ \<C-\\>\<C-N>:call VEnclose('\\left[ ', ' \\right]', '\\left[', '\\right]')\<CR>"
+	"exec 'vnoremap <silent> '.g:Tex_Leader."l{ \<C-\\>\<C-N>:call VEnclose('\\left\\{ ', ' \\right\\}', '\\left\\{', '\\right\\}')\<CR>"
+  "" RAY: Added these to auto left/right a pair of brackets
+	""exec 'vnoremap <silent> '.g:Tex_Leader."l \<C-\\>\<C-N>:call VEnclose('\\left', ' \\right', '\\left', '\\right')\<CR>"
+	"exec "nnoremap \[ <Esc>/[<Cr>Nv%h\<C-\\>\<C-N>:call VEnclose('\\left', ' \\right', '\\left', '\\right')\<CR>"
+	"exec "nnoremap \( <Esc>/(<Cr>Nv%h\<C-\\>\<C-N>:call VEnclose('\\left', ' \\right', '\\left', '\\right')\<CR>"
+	"exec "nnoremap \{ <Esc>/\\\\{<Cr>Nvl%hh\<C-\\>\<C-N>:call VEnclose('\\left', ' \\right', '\\left', '\\right')\<CR>"
 	" }}}
 end
 

@@ -1,17 +1,12 @@
-%%%%%% Styling %%%%%%
+  %%%%%% Styling %%%%%%
 
 \newcounter{qcounter}
-\usepackage{graphicx, mathtools, amssymb, latexsym, amsmath, amsfonts, amsthm,bbm, tikz}
+\usepackage{graphicx, mathtools, amssymb, latexsym, amsmath, amsfonts, amsthm, bbm, tikz}
 \usepackage[toc,page]{appendix}
-
-
-
-
-
 
 %%%%% PERSONAL DOCUMENT MACROS %%%%%%%
 
-\usepackage{array, fancyhdr, xcolor, bm, listings, soul, xcolor,titlesec, cancel,ifthen}
+\usepackage{array, fancyhdr, bm, listings, soul, xcolor,titlesec, cancel,ifthen}
 
 \setlength{\textheight}{9in}
 \setlength{\textwidth}{6.5in}
@@ -30,24 +25,6 @@
     urlcolor=red, % color URLs in red
     linktoc=all % 'all' will create links for everything in the TOC
 }
-
-
-% Hack from http://tex.stackexchange.com/questions/60209/how-to-add-an-extra-level-of-sections-with-headings-below-subsubsection 
-\titleclass{\subsubsubsection}{straight}[\subsection]
-\newcounter{subsubsubsection}[subsubsection]
-\renewcommand\thesubsubsubsection{\thesubsubsection.\arabic{subsubsubsection}}
-\renewcommand\theparagraph{\thesubsubsubsection.\arabic{paragraph}} % optional; useful if paragraphs are to be numbered
-\titleformat{\subsubsubsection}
-  {\normalfont\normalsize\bfseries}{\thesubsubsubsection}{1em}{}
-\titlespacing*{\subsubsubsection}
-{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
-\def\toclevel@subsubsubsection{4}
-\def\l@subsubsubsection{\@dottedtocline{4}{7em}{4em}}
-\setcounter{secnumdepth}{4}
-\setcounter{tocdepth}{4}
-
-
-
 
 
 % Theorems
@@ -106,18 +83,6 @@
 
 
 
-%%%%%%%%%%%%%%%%%%%% Tikz %%%%%%%%%%%%%%%%%%%%
-
-
-\usetikzlibrary{positioning,decorations.pathreplacing,calc,backgrounds, shapes}
-\newcommand{\tikzmark}[1]{\tikz[overlay,remember picture] \node (#1) {};}
-
-
-\tikzstyle{43block}=[draw,shape=rectangle,shape aspect=1.33,minimum size=4em]
-
-%%%%%%%%%%%%%%%%%%%% ./Tikz %%%%%%%%%%%%%%%%%%%%
-
-
 
 
 
@@ -158,14 +123,6 @@
 }
 
 
-\usepackage{stmaryrd}
-\newcommand{\llbr}{\llbracket}
-\newcommand{\rrbr}{\rrbracket}
-\newcommand{\bbr}[1]{\llbracket#1\rrbracket}
-
-
-
-
 
 %%%% FOR MOP HANDOUTS %%%%
 
@@ -189,15 +146,24 @@
 
 %%%%%%%%%%%%%% ./FUNCTION SPECIFIC MACROS %%%%%%%%%%%%%%%
 
-
-
-
-
-
 %%%%%% GENERAL MACROS %%%%%%
 
+%%% Text Mode %%%
 
-%%% Names %%%
+% Collaboration
+\newcommand{\ryl}[1]{{\color{red} {\small [Ray: #1]}}}
+\newcommand{\TODO}[1]{{\color{red} {\small [TODO: #1]}}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%% SAFE MACROS (use these if writing a paper) %%%%%
+
+%%% Text model %%%
+
+%% Names %%
 \newcommand\Hastad{H{\aa}stad }
 \newcommand\Bregman{Br\'egman }
 \newcommand\Konig{K\"onig }
@@ -206,10 +172,10 @@
 \newcommand\Szemeredi{Szemer\'edi }
 \newcommand\Chvatal{Chv\'atal }
 \newcommand\Lovasz{Lov\'asz }
+\newcommand\Komlos{Koml\'os }
+\newcommand\Poincare{Poincar\'e }
+\newcommand\Bollobas{Bollob{\'a}s }
 
-
-
-%%% Text Mode %%%
 
 %colors
 \newcommand\red[1]{{\color{red} #1}}
@@ -221,6 +187,252 @@
 \newcommand\purple[1]{{\color{purple} #1}}
 \newcommand\white[1]{{\color{white} #1}}
 \newcommand\whitespace{{\color{white}.}}
+
+
+%%% Math Mode %%%
+
+%% Macros %%
+
+% bracketing
+\newcommand{\floor}[1]{\lfloor {#1} \rfloor}
+\newcommand{\Floor}[1]{\left\lfloor {#1} \right\rfloor}
+\newcommand{\ceil}[1]{\lceil {#1}\rceil}
+\newcommand{\Ceil}[1]{\left\lceil {#1}\right\rceil}
+\providecommand{\abs}[1]{\left\vert#1\right\vert}
+
+
+\newcommand\sar{^*}
+\newcommand\norm[1]{\left\lVert#1\right\rVert}
+\newcommand{\ind}[1]{^{(#1)}}
+\newcommand\defeq{\ensuremath{\stackrel{\rm def}{=}}} % Equal by definition
+
+
+%% Text %%
+\renewcommand{\Pr}{\mathop{\bf Pr\/}}
+\newcommand{\DKL}{\mathbb{D}_{KL}}
+\newcommand{\E}{\mathop{\bf E\/}}
+\newcommand{\Ex}{\mathop{\bf E\/}}
+\newcommand{\Var}{\mathop{\bf Var\/}}
+\newcommand{\Cov}{\mathop{\bf Cov\/}}
+
+
+% more text FIX with underset
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*\esssup{esssup}
+\DeclareMathOperator*\essinf{essinf}
+\DeclareMathOperator*\lcm{lcm}
+\DeclareMathOperator*\ord{ord}
+\DeclareMathOperator*\dist{dist}
+\DeclareMathOperator*\poly{poly}
+\DeclareMathOperator*\polylog{polylog}
+\DeclareMathOperator*\rank{rank}
+\DeclareMathOperator*\Ran{Ran}
+\DeclareMathOperator*\Ker{Ker}
+\DeclareMathOperator*\im{Im}
+\DeclareMathOperator*\image{im}
+\DeclareMathOperator*\Image{Im}
+\DeclareMathOperator*\Domain{Domain}
+\DeclareMathOperator*\Dom{Dom}
+\DeclareMathOperator*\Aut{Aut}
+\DeclareMathOperator*\Fix{Fix}
+\DeclareMathOperator*\Pow{Pow}
+\DeclareMathOperator*\Vol{Vol}
+\DeclareMathOperator*\Enc{Enc}
+\DeclareMathOperator*\wt{wt}
+\DeclareMathOperator*\trace{trace}
+\DeclareMathOperator*\tr{trace}
+\renewcommand\div{\,\textnormal{div}\,}
+\DeclareMathOperator*\curl{curl}
+\DeclareMathOperator*\sgn{sgn}
+\DeclareMathOperator*\chr{char}
+\DeclareMathOperator*\Inn{Inn}
+\DeclareMathOperator*\spn{span}
+\DeclareMathOperator*\suchthat{s.t.}
+\DeclareMathOperator*\vol{vol}
+\DeclareMathOperator*\len{len}
+\DeclareMathOperator*\diam{diam}
+\DeclareMathOperator*\perm{perm}
+\DeclareMathOperator*\Dec{Dec}
+\DeclareMathOperator*\supp{supp}
+\DeclareMathOperator*\Reg{Reg}
+\DeclareMathOperator*\LCS{LCS}
+\DeclareMathOperator*\Bin{Binomial}
+\DeclareMathOperator*\Binomial{Binomial}
+\DeclareMathOperator*\Poisson{Poisson}
+\DeclareMathOperator*\Geometric{Geometric}
+\DeclareMathOperator*\Bernoulli{Bernoulli}
+\DeclareMathOperator*\Exp{Exp}
+\DeclareMathOperator*\Uniform{Uniform}
+\DeclareMathOperator*\Pareto{Pareto}
+\DeclareMathOperator*\Normal{Normal}
+\DeclareMathOperator*\depth{depth}
+\DeclareMathOperator*\polyn{poly(n)}
+\DeclareMathOperator*\size{size}
+\DeclareMathOperator*\unsat{unsat}
+\DeclareMathOperator*\interior{int}
+\DeclareMathOperator*\cl{cl}
+\DeclareMathOperator*\height{ht}
+\newcommand\id{\text{id}}
+\newcommand\iden{\text{id}}
+\DeclareMathOperator*\Seq{Seq}
+\DeclareMathOperator*\range{range}
+\DeclareMathOperator*\domain{dom}
+\DeclareMathOperator*\crossing{crossing}
+\DeclareMathOperator*\Term{Term}
+\DeclareMathOperator*\Fml{Fml}
+\DeclareMathOperator*\FV{FV}
+\DeclareMathOperator*\meas{meas}
+\DeclareMathOperator*\length{length}
+\DeclareMathOperator*\Mod{Mod}
+\DeclareMathOperator*\Sent{Sent}
+\DeclareMathOperator*\Th{Th}
+\DeclareMathOperator*\Sym{Sym}
+\DeclareMathOperator*\perimeter{perimeter}
+\DeclareMathOperator*\ED{ED}
+\DeclareMathOperator*\CD{CD}
+\DeclareMathOperator*\Adv{Adv}
+\DeclareMathOperator*\OnAdv{OnAdv}
+\DeclareMathOperator*\crss{cr}
+\DeclareMathOperator*\cis{cis}
+\DeclareMathOperator*\pow{pow}
+\DeclareMathOperator*\Supp{Supp}
+\DeclareMathOperator*\End{End}
+\DeclareMathOperator*\Mat{Mat}
+\DeclareMathOperator*\VF{VF}
+\newcommand{\Maj}{\textnormal{Maj}}
+\newcommand{\Majority}{\textnormal{Majority}}
+\newcommand\NS{\textnormal{NS}}
+\newcommand\Stab{\textnormal{Stab}}
+\newcommand{\Inf}{\textnormal{Inf}}
+\newcommand{\Hom}{\textnormal{Hom}}
+\newcommand{\Map}{\textnormal{Map}}
+\newcommand{\Tor}{\textnormal{Tor}}
+\newcommand{\Ext}{\textnormal{Ext}}
+\newcommand{\GL}{\textnormal{GL}}
+\newcommand{\GS}{\textnormal{GS}}
+\newcommand{\SL}{\textnormal{SL}}
+\newcommand{\Tr}{\textnormal{Tr}}
+\newcommand{\Tow}{\textnormal{Tow}}
+\newcommand{\Lap}{\textnormal{Lap}}
+\newcommand{\Per}{\textnormal{Per}}
+\newcommand{\Perm}{\textnormal{Perm}}
+\newcommand{\capacity}{\textnormal{cap}}
+\newcommand{\Ind}{\textnormal{Ind}}
+\newcommand{\trdim}[1]{\textnormal{tr$_{#1}$dim}}
+\newcommand{\Signature}{\textnormal{Signature}}
+\newcommand{\eval}{\textnormal{eval}}
+\DeclareMathOperator*\coker{coker}
+\DeclareMathOperator*\Bilinear{Bilinear}
+\DeclareMathOperator*\Ann{Ann}
+\DeclareMathOperator*\Torsion{Torsion}
+\newcommand\BDC{\textnormal{BDC}}
+\newcommand\outdeg{\textnormal{outdeg}}
+\newcommand\indeg{\textnormal{indeg}}
+\newcommand\li{\textnormal{li}}
+\newcommand\sparsity{\textnormal{sparsity}}
+\newcommand\Frac{\textnormal{Frac}}
+\newcommand\irreg{\textnormal{irreg}}
+\newcommand\AC{\textnormal{AC}}
+\newcommand\minrk{\textnormal{minrk}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%% Useless macros (ones I don't really need) %%%%%
+
+
+
+% Hack from http://tex.stackexchange.com/questions/60209/how-to-add-an-extra-level-of-sections-with-headings-below-subsubsection 
+\titleclass{\subsubsubsection}{straight}[\subsection]
+\newcounter{subsubsubsection}[subsubsection]
+\renewcommand\thesubsubsubsection{\thesubsubsection.\arabic{subsubsubsection}}
+\renewcommand\theparagraph{\thesubsubsubsection.\arabic{paragraph}} % optional; useful if paragraphs are to be numbered
+\titleformat{\subsubsubsection}
+  {\normalfont\normalsize\bfseries}{\thesubsubsubsection}{1em}{}
+\titlespacing*{\subsubsubsection}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+\def\toclevel@subsubsubsection{4}
+\def\l@subsubsubsection{\@dottedtocline{4}{7em}{4em}}
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+
+
+
+\usepackage{stmaryrd}
+\newcommand{\llbr}{\llbracket}
+\newcommand{\rrbr}{\rrbracket}
+\newcommand{\bbr}[1]{\llbracket#1\rrbracket}
+
+
+%%%%%%%%%%%%%%%%%%%% Tikz %%%%%%%%%%%%%%%%%%%%
+
+
+\usetikzlibrary{positioning,decorations.pathreplacing,calc,backgrounds, shapes}
+\newcommand{\tikzmark}[1]{\tikz[overlay,remember picture] \node (#1) {};}
+
+
+\tikzstyle{43block}=[draw,shape=rectangle,shape aspect=1.33,minimum size=4em]
+
+%%%%%%%%%%%%%%%%%%%% ./Tikz %%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\mynote}[2]{\marginpar{\tiny {\bf {#2}:} \sf {#1}}}
+\newcommand{\raysays}{\ryl}
+\newcommand{\intuit}[1]{{\color{blue} {\small [Intuition: #1]}}}
+\newcommand{\intuition}{\intuit}
+\newcommand{\ituit}{\intuit}
+\newcommand{\raynote}[1]{{\color{red} \mynote{#1}{RL}}} % Ray's note
+\newcommand{\open}{\textbf{{Open}} }
+\newcommand{\todo}[1]{{\color{red} {\small [TODO: #1]}}}
+\newcommand\fillin{\TODO{FILL IN}}
+\newcommand\FILLIN{\TODO{FILL IN}}
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+\newcommand{\centered}[1]{\begin{center}{#1}\end{center}}
+
+
 
 % text
 \newcommand{\inlinesection}[1]{\noindent\textbf{#1}}
@@ -246,28 +458,121 @@
 \newcommand{\inlinetikz}[1]{\tikz[scale=0.2]{#1}}
 \newcommand{\case}[1]{\left\{\begin{matrix}#1\end{matrix}\right.}
 \newcommand{\ignore}[1]{}
-\newcommand\tsup{\textsuperscript}
+%\newcommand\tsup{\textsuperscript}
+
+% matrices for displayed expressions
+\newcommand{\mat}[1]{\begin{matrix}#1\end{matrix}} % no delimiters
+\newcommand{\pmat}[1]{\pa{\mat{#1}}} % parentheses as delimiters
+\newcommand{\bmat}[1]{\ba{\mat{#1}}} % square brackets as delimiters
+
+% for small matrices to be used in in-line expressions
+\newcommand{\sm}[1]{\begin{smallmatrix}#1\end{smallmatrix}} % no delimiters
+\newcommand{\psm}[1]{\pa{\sm{#1}}} % parentheses as delimiters
+\newcommand{\bsm}[1]{\bra{\sm{#1}}} % square brackets as delimiters
+
+% variations of \frac and \sfrac
+\newcommand{\pfrac}[2]{\pa{\frac{#1}{#2}}} % enclosed in parentheses
+\newcommand{\bfrac}[2]{\bra{\frac{#1}{#2}}} % enclosed in square brackets
+\newcommand{\psfrac}[2]{\pa{\sfrac{#1}{#2}}} % sfrac enclosed in parentheses
+\newcommand{\bsfrac}[2]{\bra{\sfrac{#1}{#2}}} % sfrac enclosed in square brackets
 
 
 
+\newcommand{\lp}{\left(}
+\newcommand{\rp}{\right)}
+\newcommand{\pa}[1]{\lp#1\rp}
+\newcommand{\lb}{\left[}
+\newcommand{\rb}{\right]}
+\newcommand{\ba}[1]{\lb#1\rb}
+\newcommand{\lbr}{\left\{}
+\newcommand{\rbr}{\right\}}
+\newcommand{\lf}{\left\lfloor}
+\newcommand{\rf}{\right\rfloor}
+\newcommand{\lc} {\left\lceil}
+\newcommand{\rc} {\right\rceil}
+\newcommand{\<}{\langle}
+\renewcommand{\>}{\rangle}
+\newcommand{\ab}[1]{\langle#1\rangle}
+\newcommand{\angbra}[1]{\langle#1\rangle}
+\newcommand{\inner}[1]{\langle#1\rangle}
+\newcommand\llnorm[1]{\sqrt{ #1_1^2+#1_2^2}}
+\newcommand\lpnorm[2]{\sqrt[ #2 ]{ #1_1^{ #2 }+#1_2^ { #2 }}}
+\newcommand\lldotsnorm[2]{\sqrt{ #1_1^2+\cdots + #1_{ #2 }^2}}
 
-% Collaboration
-\newcommand{\mynote}[2]{\marginpar{\tiny {\bf {#2}:} \sf {#1}}}
-\newcommand{\ryl}[1]{{\color{red} {\small [Ray: #1]}}}
-\newcommand{\raysays}{\ryl}
-\newcommand{\intuit}[1]{{\color{blue} {\small [Intuition: #1]}}}
-\newcommand{\intuition}{\intuit}
-\newcommand{\raynote}[1]{{\color{red} \mynote{#1}{RL}}} % Ray's note
-\newcommand{\open}{\textbf{{Open}} }
-\newcommand{\todo}[1]{{\color{red} {\small [TODO: #1]}}}
-\newcommand{\TODO}[1]{{\color{red} {\small [TODO: #1]}}}
-\newcommand\fillin{\TODO{FILL IN}}
-\newcommand\FILLIN{\TODO{FILL IN}}
-\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
-\newcommand{\centered}[1]{\begin{center}{#1}\end{center}}
-%%% Math Mode %%%
+% More
 
-%% Macros %%
+
+\newcommand\dhat[1]{\hat{\hat{#1}}}
+\newcommand\qeq{\q=}
+\newcommand\dsp{\displaystyle}
+\newcommand\xor{^\wedge}
+\newcommand\andl{\wedge}
+\newcommand\orl{\vee}
+\newcommand\ii{\item}
+\newcommand\inv{^{-1}}
+\newcommand\sq{^{2}}
+\newcommand\dg{^{\circ}}
+\newcommand\bd{_\bullet} % bd for ``bullet down''
+\newcommand\bu{^\bullet} % bu for ``bullet up''
+\newcommand\bra[1]{\langle #1|}
+\newcommand\ket[1]{|#1\rangle}
+\newcommand\directsum{\bigoplus}
+\newcommand\dsum{\bigoplus}
+\newcommand\nonempty{\neq\emptyset}
+\newcommand\isempty{=\emptyset}
+\newcommand\many[1]{ #1 \cdots #1 }
+\newcommand\pluses{\many+}
+\newcommand\minuses{\many-}
+\newcommand\wedges{\many\wedge}
+\newcommand\normal{\triangleleft\,}
+\newcommand{\inj}{\hookrightarrow}
+\newcommand{\surj}{\twoheadrightarrow}
+\newcommand\eqdef{\ensuremath{\stackrel{\rm def}{=}}} % Equal by definition
+\newcommand{\sigmastar}{\Sigma^*}
+\newcommand{\curv}{\kappa_g}
+\newcommand{\lap}[1]{\calL\br{#1}}
+\newcommand{\tild}{\widetilde}
+\newcommand{\phitilde}{\tild{\varphi}}
+\def\nab{\nabla}
+\newcommand\eps{\varepsilon}
+\newcommand\sqrteps{\sqrt\eps}
+\newcommand\half {\frac{1}{2}}
+\newcommand\third {\frac{1}{3}}
+\newcommand\fourth {\frac{1}{4}}
+\newcommand\fifth {\frac{1}{5}}
+\newcommand\sixth {\frac{1}{6}}
+\newcommand\seventh {\frac{1}{7}}
+\newcommand\eigth {\frac{1}{8}}
+\newcommand\eighth {\frac{1}{8}}
+\newcommand{\al}[1]{{\aleph_{#1}}}
+\newcommand{\leb}{\calL^N}
+\newcommand{\lebo}{\calL_o^N}
+\newcommand{\op}{\oplus}
+\newcommand{\ot}{\otimes}
+\newcommand{\bwedge}{{\textstyle{\bigwedge}}}
+\newcommand{\meet}{\wedge}
+\newcommand{\join}{\vee}
+
+
+
+\newcommand{\dual}{^\perp}
+\newcommand{\incl}{\xhookrightarrow}
+\newcommand{\aff}[2]{\mathbb{A}^{#1}(#2)}
+\newcommand{\var}[1]{\mathbb{V}(#1)}
+
+\newcommand{\stddev}{\mathop{\bf stddev\/}}
+\newcommand{\bfit}[1]{\textit{\textbf{#1}}}
+\newcommand\randX{\bm X}
+\newcommand\randY{\bm Y}
+\newcommand\randZ{\bm Z}
+\newcommand\ZZn{\ZZ/n\ZZ}
+\newcommand\ZZp{\ZZ/p\ZZ}
+\newcommand\ZG{{\ZZ G}}
+%\renewcommand\v[1]{\vec {\bm #1}}
+
+
+% for lulz
+
 \newcommand\taylorEToX[2]{\sum_{#2 = 0}^{\infty} \frac{\left(#1\right)^{#2}} {\left(#2\right)!} }
 \newcommand\liminfty[1]{\lim_{#1\to\infty}}
 \newcommand\limtoinfty[1]{\lim_{#1\to\infty}}
@@ -286,107 +591,7 @@
 %\newcommand{\q}[1]{\stackrel{?}{#1}}
 \newcommand{\ub}{\underbrace}
 
-% matrices for displayed expressions
-\newcommand{\mat}[1]{\begin{matrix}#1\end{matrix}} % no delimiters
-\newcommand{\pmat}[1]{\pa{\mat{#1}}} % parentheses as delimiters
-\newcommand{\bmat}[1]{\ba{\mat{#1}}} % square brackets as delimiters
 
-% for small matrices to be used in in-line expressions
-\newcommand{\sm}[1]{\begin{smallmatrix}#1\end{smallmatrix}} % no delimiters
-\newcommand{\psm}[1]{\pa{\sm{#1}}} % parentheses as delimiters
-\newcommand{\bsm}[1]{\bra{\sm{#1}}} % square brackets as delimiters
-
-% variations of \frac and \sfrac
-\newcommand{\pfrac}[2]{\pa{\frac{#1}{#2}}} % enclosed in parentheses
-\newcommand{\bfrac}[2]{\bra{\frac{#1}{#2}}} % enclosed in square brackets
-\newcommand{\psfrac}[2]{\pa{\sfrac{#1}{#2}}} % sfrac enclosed in parentheses
-\newcommand{\bsfrac}[2]{\bra{\sfrac{#1}{#2}}} % sfrac enclosed in square brackets
-
-% bracketing
-\newcommand{\lp}{\left(}
-\newcommand{\rp}{\right)}
-\newcommand{\pa}[1]{\lp#1\rp}
-\newcommand{\lb}{\left[}
-\newcommand{\rb}{\right]}
-\newcommand{\ba}[1]{\lb#1\rb}
-\newcommand{\lbr}{\left\{}
-\newcommand{\rbr}{\right\}}
-\newcommand{\lf}{\lfloor}
-\newcommand{\rf}{\rfloor}
-\newcommand{\floor}[1]{\lf {#1} \rf}
-\newcommand{\lc} {\lceil}
-\newcommand{\rc} {\rceil}
-\newcommand{\ceil}[1]{\lceil {#1}\rceil}
-\newcommand{\Ceil}[1]{\big\lceil {#1}\big\rceil}
-\newcommand{\<}{\langle}
-\renewcommand{\>}{\rangle}
-\newcommand{\ab}[1]{\langle#1\rangle}
-\newcommand{\angbra}[1]{\langle#1\rangle}
-\newcommand{\inner}[1]{\langle#1\rangle}
-\providecommand{\abs}[1]{\left\vert#1\right\vert}
-\newcommand\llnorm[1]{\sqrt{ #1_1^2+#1_2^2}}
-\newcommand\lpnorm[2]{\sqrt[ #2 ]{ #1_1^{ #2 }+#1_2^ { #2 }}}
-\newcommand\lldotsnorm[2]{\sqrt{ #1_1^2+\cdots + #1_{ #2 }^2}}
-\providecommand{\abs}[1]{\left\vert#1\right\vert}
-
-%% Symbols %%
-\newcommand\qeq{\q=}
-\newcommand\dsp{\displaystyle}
-\newcommand\xor{^\wedge}
-\newcommand\andl{\wedge}
-\newcommand\orl{\vee}
-\newcommand\ii{\item}
-\newcommand\inv{^{-1}}
-\newcommand\sq{^{2}}
-\newcommand\sar{^*}
-\newcommand\dg{^{\circ}}
-\newcommand\bd{_\bullet} % bd for ``bullet down''
-\newcommand\bu{^\bullet} % bu for ``bullet up''
-\newcommand\bra[1]{\langle #1|}
-\newcommand\ket[1]{|#1\rangle}
-\newcommand\directsum{\bigoplus}
-\newcommand\dsum{\bigoplus}
-\newcommand\norm[1]{\left\lVert#1\right\rVert}
-\newcommand\nonempty{\neq\emptyset}
-\newcommand\isempty{=\emptyset}
-\newcommand\many[1]{ #1 \cdots #1 }
-\newcommand\pluses{\many+}
-\newcommand\minuses{\many-}
-\newcommand\wedges{\many\wedge}
-\newcommand\normal{\triangleleft\,}
-\newcommand{\inj}{\hookrightarrow}
-\newcommand{\surj}{\twoheadrightarrow}
-\newcommand{\defeq}{\vcentcolon=}
-\newcommand{\eqdef}{=\vcentcolon}
-\newcommand{\sigmastar}{\Sigma^*}
-\newcommand{\curv}{\kappa_g}
-\newcommand{\lap}[1]{\calL\br{#1}}
-\newcommand{\tild}{\widetilde}
-\newcommand{\phitilde}{\tild{\varphi}}
-\newcommand{\ind}[1]{^{(#1)}}
-\def\nab{\nabla}
-\newcommand\eps{\varepsilon}
-\newcommand\sqrteps{\sqrt\eps}
-\newcommand\lam{\lambda}
-\newcommand\lamba{\lambda}
-\newcommand\half {\frac{1}{2}}
-\newcommand\third {\frac{1}{3}}
-\newcommand\fourth {\frac{1}{4}}
-\newcommand\fifth {\frac{1}{5}}
-\newcommand\sixth {\frac{1}{6}}
-\newcommand\seventh {\frac{1}{7}}
-\newcommand\eigth {\frac{1}{8}}
-\newcommand\eighth {\frac{1}{8}}
-\newcommand{\al}[1]{{\aleph_{#1}}}
-\newcommand{\leb}{\calL^N}
-\newcommand{\lebo}{\calL_o^N}
-\newcommand{\op}{\oplus}
-\newcommand{\ot}{\otimes}
-\newcommand{\bwedge}{{\textstyle{\bigwedge}}}
-%\newcommand{\bop}{\bigoplus}
-%\newcommand{\bot}{\bigotimes}
-
-\newcommand{\incl}{\xhookrightarrow}
 
 % arrows
 \newcommand\lrarrow {\leftrightarrow}
@@ -411,6 +616,8 @@
 \newcommand\cosang{\cos\angle}
 \newcommand\tanang{\tan\angle}
 
+
+
 % derivatives
 \newcommand\dd[2]{\frac{d#1}{d#2}}
 \newcommand\dAdt{\frac{dA}{dt}}
@@ -432,25 +639,7 @@
 \newcommand\deldelt[1]{\deldel{#1}{t}}
 \newcommand\grad{\nab}
 
-%% Text %%
-\renewcommand{\Pr}{\mathop{\bf Pr\/}}
-\newcommand{\E}{\mathop{\bf E\/}}
-\newcommand{\Ex}{\mathop{\bf E\/}}
-\newcommand{\Var}{\mathop{\bf Var\/}}
-\newcommand{\Cov}{\mathop{\bf Cov\/}}
-\newcommand{\stddev}{\mathop{\bf stddev\/}}
-\newcommand{\bfit}[1]{\textit{\textbf{#1}}}
-\newcommand\randX{\bm X}
-\newcommand\randY{\bm Y}
-\newcommand\randZ{\bm Z}
-\newcommand\X{\rX}
-\newcommand\Y{\rY}
-\newcommand\Z{\ZZ}
-\newcommand\ZZn{\ZZ/n\ZZ}
-\newcommand\ZZp{\ZZ/p\ZZ}
-\newcommand\ZG{{\ZZ G}}
-%\renewcommand\v[1]{\vec {\bm #1}}
-
+% fancy letters
 \newcommand\ZZ{\mathbb{Z}}
 \newcommand\RR{\mathbb{R}}
 \newcommand\AAA{\mathbb{A}}
@@ -617,108 +806,3 @@
 \newcommand\zero{\textbf{0}}
 \newcommand\CCx{{\mathbb{C}^x}}
 
-% more text FIX with underset
-\DeclareMathOperator*{\argmin}{arg\,min}
-\DeclareMathOperator*{\argmax}{arg\,max}
-\DeclareMathOperator*\esssup{esssup}
-\DeclareMathOperator*\essinf{essinf}
-\DeclareMathOperator*\lcm{lcm}
-\DeclareMathOperator*\ord{ord}
-\DeclareMathOperator*\dist{dist}
-\DeclareMathOperator*\poly{poly}
-\DeclareMathOperator*\polylog{polylog}
-\DeclareMathOperator*\rank{rank}
-\DeclareMathOperator*\Ran{Ran}
-\DeclareMathOperator*\Ker{Ker}
-\DeclareMathOperator*\im{Im}
-\DeclareMathOperator*\image{im}
-\DeclareMathOperator*\Image{Im}
-\DeclareMathOperator*\Domain{Domain}
-\DeclareMathOperator*\Dom{Dom}
-\DeclareMathOperator*\Aut{Aut}
-\DeclareMathOperator*\Fix{Fix}
-\DeclareMathOperator*\Pow{Pow}
-\DeclareMathOperator*\Vol{Vol}
-\DeclareMathOperator*\Enc{Enc}
-\DeclareMathOperator*\wt{wt}
-\DeclareMathOperator*\trace{trace}
-\DeclareMathOperator*\tr{trace}
-\renewcommand\div{\,\textnormal{div}\,}
-\DeclareMathOperator*\curl{curl}
-\DeclareMathOperator*\sgn{sgn}
-\DeclareMathOperator*\chr{char}
-\DeclareMathOperator*\Inn{Inn}
-\DeclareMathOperator*\spn{span}
-\DeclareMathOperator*\suchthat{s.t.}
-\DeclareMathOperator*\vol{vol}
-\DeclareMathOperator*\len{len}
-\DeclareMathOperator*\diam{diam}
-\DeclareMathOperator*\perm{perm}
-\DeclareMathOperator*\Dec{Dec}
-\DeclareMathOperator*\Majority{Majority}
-\DeclareMathOperator*\supp{supp}
-\DeclareMathOperator*\Reg{Reg}
-\DeclareMathOperator*\LCS{LCS}
-\DeclareMathOperator*\Bin{Binomial}
-\DeclareMathOperator*\Binomial{Binomial}
-\DeclareMathOperator*\Poisson{Poisson}
-\DeclareMathOperator*\Geometric{Geometric}
-\DeclareMathOperator*\Bernoulli{Bernoulli}
-\DeclareMathOperator*\Exp{Exp}
-\DeclareMathOperator*\Uniform{Uniform}
-\DeclareMathOperator*\Pareto{Pareto}
-\DeclareMathOperator*\Normal{Normal}
-\DeclareMathOperator*\depth{depth}
-\DeclareMathOperator*\polyn{poly(n)}
-\DeclareMathOperator*\size{size}
-\DeclareMathOperator*\unsat{unsat}
-\DeclareMathOperator*\interior{int}
-\DeclareMathOperator*\cl{cl}
-\DeclareMathOperator*\height{ht}
-\newcommand\id{\text{id}}
-\newcommand\iden{\text{id}}
-\DeclareMathOperator*\Seq{Seq}
-\DeclareMathOperator*\range{range}
-\DeclareMathOperator*\domain{dom}
-\DeclareMathOperator*\crossing{crossing}
-\DeclareMathOperator*\Term{Term}
-\DeclareMathOperator*\Fml{Fml}
-\DeclareMathOperator*\FV{FV}
-\DeclareMathOperator*\meas{meas}
-\DeclareMathOperator*\length{length}
-\DeclareMathOperator*\Mod{Mod}
-\DeclareMathOperator*\Sent{Sent}
-\DeclareMathOperator*\Th{Th}
-\DeclareMathOperator*\Sym{Sym}
-\DeclareMathOperator*\perimeter{perimeter}
-\DeclareMathOperator*\ED{ED}
-\DeclareMathOperator*\CD{CD}
-\DeclareMathOperator*\Adv{Adv}
-\DeclareMathOperator*\OnAdv{OnAdv}
-\DeclareMathOperator*\crss{cr}
-\DeclareMathOperator*\cis{cis}
-\DeclareMathOperator*\pow{pow}
-\DeclareMathOperator*\Supp{Supp}
-\DeclareMathOperator*\End{End}
-\DeclareMathOperator*\Mat{Mat}
-\DeclareMathOperator*\VF{VF}
-\newcommand{\Hom}{\textnormal{Hom}}
-\newcommand{\Map}{\textnormal{Map}}
-\newcommand{\Tor}{\textnormal{Tor}}
-\newcommand{\Ext}{\textnormal{Ext}}
-\newcommand{\GL}{\textnormal{GL}}
-\newcommand{\GS}{\textnormal{GS}}
-\newcommand{\SL}{\textnormal{SL}}
-\newcommand{\Tr}{\textnormal{Tr}}
-\newcommand{\Tow}{\textnormal{Tow}}
-\newcommand{\Lap}{\textnormal{Lap}}
-\newcommand{\Ind}{\textnormal{Ind}}
-\newcommand{\trdim}[1]{\textnormal{tr$_{#1}$dim}}
-\newcommand{\Signature}{\textnormal{Signature}}
-\DeclareMathOperator*\coker{coker}
-\DeclareMathOperator*\Bilinear{Bilinear}
-\DeclareMathOperator*\Ann{Ann}
-\DeclareMathOperator*\Torsion{Torsion}
-\newcommand\BDC{\textnormal{BDC}}
-\newcommand\outdeg{\textnormal{outdeg}}
-\newcommand\indeg{\textnormal{indeg}}
