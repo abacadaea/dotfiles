@@ -108,6 +108,12 @@ function bibfind () {
   fi
 }
 
+function biblookup () {
+  file="/Users/rayli/Dropbox/Latex/rayyli.bib"
+  echo $file
+  grep -A 30 $1 $file
+}
+
 #https://github.com/venthur/gscholar
 function bibscholar () {
   gscholar "$1"
