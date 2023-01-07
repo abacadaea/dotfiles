@@ -54,8 +54,7 @@ if !exists('s:doneMappings')
 	call IMAP ('^^', '^{<++>}<++>', "tex")
 	call IMAP ('$$', '$<++>$<++>', "tex")
 	"call IMAP ('==', '&=& ', "tex")
-	call IMAP ('==', '\ &<++> \ <++> ', "tex")  " Added by Ray
-	call IMAP ('=-', '\ <++> \ <++> ', "tex")   " Added by Ray
+	call IMAP ('==', '&<++>', "tex")  " Added by Ray
 	call IMAP ('~~', '&\approx& ', "tex")
 	call IMAP ('=~', '\approx', "tex")
 	call IMAP ('::', '\dots', "tex")

@@ -1,5 +1,5 @@
 ""TODO: Highlight '$th's, 'will', '\ref{eq:' and similar common latex errors.
-colorscheme koehler
+colorscheme delek
 set nocp
 set number
 set so=999
@@ -37,7 +37,7 @@ au BufNewFile,BufRead *.tex noremap <C-D> WBi$<Esc>Ea$<Esc>
 au BufNewFile,BufRead *.tex inoremap <C-D> $$<++><Esc>4hi
 au BufNewFile,BufRead *.tex inoremap <C-F> ()<++><Esc>4hi
 au BufNewFile,BufRead *.tex inoremap <C-G> []<++><Esc>4hi
-au BufNewFile,BufRead *.tex inoremap <C-B> \{\}<++><Esc>5hi
+au BufNewFile,BufRead *.tex inoremap <C-B> {}<++><Esc>4hi
 
 
 "hacks for ocaml
@@ -58,6 +58,7 @@ au BufNewFile,BufRead *.tex setl ft=tex textwidth=0
 au BufNewFile,BufRead *.md setl ft=tex textwidth=0
 au BufNewFile,BufRead *.txt setl textwidth=0
 au BufNewFile,BufRead *.html setl textwidth=0
+au BufNewFile,BufRead *.sage set syntax=python
 
 syntax on
 set makeprg=pdflatex\ %:r;open\ %:r.pdf

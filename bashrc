@@ -71,8 +71,8 @@ function bibfileadd () {
 function bibadd () {
   tmpfile="tmp_AASDFASDF.bib"
   if [ "$#" -eq 1 ]; then
-    url=$(echo $1 | sed "s/\/rec\//\/rec\/bib2\//")
-    echo $url
+    #url=$(echo $1 | sed "s/\/rec\//\/rec\/bib2\//")
+    url=$1.bib
     curl $url | sed "/\@proceedings/,/^}$/d" | sed "s/DBLP\(.*\)\///" > $tmpfile
     cat $tmpfile
     bibfileadd $tmpfile
