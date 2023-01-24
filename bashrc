@@ -5,36 +5,6 @@ export LSCOLORS=GxFxCxDxBxegedabagaced
 export EDITOR='vim'
 export BIBFILE="/Users/rayli/Dropbox/Latex/rayyli.bib"
 
-###### SAMPLE USE OF bib commands ######
-## Rays-Air:www rayli$ bibfind GuruswamiS99
-## 1999
-## http://dblp.dagstuhl.de/search/publ/api?q=Guruswami%201999&format=json
-##   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-##                                  Dload  Upload   Total   Spent    Left  Speed
-## 100  3738    0  3738    0     0   6603      0 --:--:-- --:--:-- --:--:--  6604
-## "info":{"authors":{"author":["Venkatesan Guruswami","Madhu Sudan"]},"title":"Improved decoding of Reed-Solomon and algebraic-geometry codes.","venue":"IEEE Trans. Information Theory","volume":"45","number":"6","pages":"1757-1767","year":"1999","type":"Journal Articles","key":"journals/tit/GuruswamiS99","doi":"10.1109/18.782097","ee":"https://doi.org/10.1109/18.782097","url":"http://dblp.org/rec/journals/tit/GuruswamiS99"},
-## "info":{"authors":{"author":["Venkatesan Guruswami","Amit Sahai"]},"title":"Multiclass Learning, Boosting, and Error-Correcting Codes.","venue":"COLT","pages":"145-155","year":"1999","type":"Conference and Workshop Papers","key":"conf/colt/GuruswamiS99","doi":"10.1145/307400.307429","ee":"http://doi.acm.org/10.1145/307400.307429","url":"http://dblp.org/rec/conf/colt/GuruswamiS99"},
-## Rays-Air:www rayli$ bibadd http://dblp.org/rec/journals/tit/GuruswamiS99
-## http://dblp.org/rec/bib2/journals/tit/GuruswamiS99
-##   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-##                                  Dload  Upload   Total   Spent    Left  Speed
-## 100   602    0   602    0     0   1420      0 --:--:-- --:--:-- --:--:--  1423
-## @article{GuruswamiS99,
-##   author    = {Venkatesan Guruswami and
-##                Madhu Sudan},
-##   title     = {Improved decoding of Reed-Solomon and algebraic-geometry codes},
-##   journal   = {{IEEE} Trans. Information Theory},
-##   volume    = {45},
-##   number    = {6},
-##   pages     = {1757--1767},
-##   year      = {1999},
-##   url       = {https://doi.org/10.1109/18.782097},
-##   doi       = {10.1109/18.782097},
-##   timestamp = {Sun, 28 May 2017 13:18:46 +0200},
-##   biburl    = {http://dblp.org/rec/bib/journals/tit/GuruswamiS99},
-##   bibsource = {dblp computer science bibliography, http://dblp.org}
-## }
-###### END SAMPLE USE OF bib commands ######
 
 function bibcd () {
   cd "/Users/rayli/Dropbox/Latex/"

@@ -1,5 +1,4 @@
 ""TODO: Highlight '$th's, 'will', '\ref{eq:' and similar common latex errors.
-colorscheme delek
 set nocp
 set number
 set so=999
