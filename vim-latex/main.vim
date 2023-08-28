@@ -135,14 +135,15 @@ if !exists('s:doneMappings')
 	call IMAP(g:Tex_Leader.'Y','\Psi','tex')
 	call IMAP(g:Tex_Leader.'S','\Sigma','tex')
 	call IMAP(g:Tex_Leader.'U','\Upsilon','tex')
-	call IMAP(g:Tex_Leader.'W','\Omega','tex')
+	call IMAP(g:Tex_Leader.'O','\Omega','tex')
 
   "Ray's macros
 	call IMAP(g:Tex_Leader.'o', '\omega(<++>)<++>', 'tex') " for complexity
-	call IMAP(g:Tex_Leader.'O', '\Omega(<++>)<++>', 'tex') " for complexity
+	call IMAP(g:Tex_Leader.'W', '\Omega(<++>)<++>', 'tex') " for complexity
 
 	call IMAP(g:Tex_Leader.'C', '\mathbb{C}', 'tex')
 	call IMAP(g:Tex_Leader.'F', '\mathbb{F}', 'tex')
+	call IMAP(g:Tex_Leader.'K', '\mathbb{K}', 'tex')
 	call IMAP(g:Tex_Leader.'N', '\mathbb{N}', 'tex')
 	call IMAP(g:Tex_Leader.'Q', '\mathbb{Q}', 'tex')
 	call IMAP(g:Tex_Leader.'R', '\mathbb{R}', 'tex')

@@ -5,6 +5,8 @@ export LSCOLORS=GxFxCxDxBxegedabagaced
 export EDITOR='vim'
 export BIBFILE="/Users/rayli/Dropbox/Latex/rayyli.bib"
 
+autoload -Uz compinit && compinit
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
 function bibcd () {
   cd "/Users/rayli/Dropbox/Latex/"
