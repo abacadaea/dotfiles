@@ -3,10 +3,18 @@
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 export EDITOR='vim'
-export BIBFILE="/Users/rayli/Dropbox/Latex/rayyli.bib"
+export BIBFILE="~/Dropbox/Latex/rayyli.bib"
 
 autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+
+function lmk() {
+  x=${1%%.*}
+  latexmk -pdf -pvc $x.tex;
+}
+
+
+
 
 function bibcd () {
   cd "/Users/rayli/Dropbox/Latex/"
