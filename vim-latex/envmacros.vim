@@ -27,6 +27,7 @@ let s:document =   "\\documentclass[<+options+>]{<+class+>}\<cr>\<cr>\\begin{doc
 let s:tabular = "\\begin{tabular}[<+hbtp+>]{<+format+>}\<cr><++>\<cr>\\end{tabular}"
 let s:tabular_star = "\\begin{tabular*}[<+hbtp+>]{<+format+>}\<cr><++>\<cr>\\end{tabular*}"
 let s:tikz = "\\begin{center}\<cr>\\begin{tikzpicture}\<cr><++>\<cr>\\end{tikzpicture}\<cr>\\end{center}"
+let s:code = "\\begin{center}\<cr>\\begin{lstlisting}[language=]\<cr><++>\<cr>\\end{lstlisting}\<cr>\\end{center}"
 let s:left_right_matrix = "\\left\\{\<cr>\\begin{tabular}{ll}\<cr><++> & <++>\\\\\<cr><++> & <++>\\\\\<cr>\\end{tabular}\<cr>\\right."
 let s:optimization = "\\text{maximize}\\qquad & <++>\\nonumber\\\\\<cr>\\text{subject to}\\qquad & <++>"
 
@@ -238,6 +239,7 @@ call s:Tex_EnvMacros('',    '&Math.', 'eqnarray*')
 call s:Tex_EnvMacros('EEQ', '&Math.', 'equation')
 call s:Tex_EnvMacros('EMA', '&Math.', 'math')
 call s:Tex_SpecialMacros('ETK', '&Math.', 'tikzpicture', s:tikz)
+call s:Tex_SpecialMacros('ELL', '&Math.',  'lstlisting', s:code)
 " }}}
 " Structure {{{
 call s:Tex_SpecialMacros('EAR', 'Math.', 'array', s:array)
@@ -293,6 +295,9 @@ call s:Tex_EnvMacros('TPR', '&Theorem.',  'proposition')
 call s:Tex_EnvMacros('TRE', '&Theorem.',  'remark')
 call s:Tex_EnvMacros('TCO', '&Theorem.',  'corollary')
 call s:Tex_EnvMacros('TSO', '&Theorem.',  'solution')
+call s:Tex_EnvMacros('TSO', '&Theorem.',  'solution')
+
+
 
 call s:Tex_EnvMacros('theorem*', '&Theorem.',  'theorem*')
 call s:Tex_EnvMacros('example*', '&Theorem.',  'example*')
