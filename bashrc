@@ -10,6 +10,7 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
 function lmk() {
   x=${1%%.*}
+  open -a "Skim" $x.pdf;
   latexmk -pdf -pvc $x.tex;
 }
 
@@ -135,7 +136,7 @@ function lpdf () {
   x=${1%%.*}
   #if latexmk $x.tex -pdf; then
   if pdflatex $x.tex; then
-    open $x.pdf;
+    open -aSkim $x.pdf;
   fi
 }
 
@@ -150,7 +151,7 @@ function lpdf_soln() {
   x_soln=$x"_SOLUTIONS"
   if pdflatex "\def\showsoln{1} \input{$x.tex}"; then
     mv -f $x.pdf $x_soln.pdf
-    open $x_soln.pdf;
+    open -aSkim $x_soln.pdf;
   fi
 }
 
