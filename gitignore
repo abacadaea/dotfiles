@@ -58,3 +58,5 @@ deps
 *.nb
 *.m
 *.txt
+
+*.dSYM

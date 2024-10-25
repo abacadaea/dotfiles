@@ -55,6 +55,7 @@ au FileType python setl sw=4 ts=4 et
 au BufNewFile,BufRead *.tex setl spell
 au BufNewFile,BufRead *.tex setl ft=tex textwidth=0
 au BufNewFile,BufRead *.md setl ft=tex textwidth=0
+au BufNewFile,BufRead *.sage setl ft=py textwidth=0
 au BufNewFile,BufRead *.txt setl textwidth=0
 au BufNewFile,BufRead *.html setl textwidth=0
 au BufNewFile,BufRead *.sage set syntax=python
