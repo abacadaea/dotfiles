@@ -4,6 +4,7 @@ export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 export EDITOR='vim'
 export BIBFILE="~/Dropbox/Latex/rayyli.bib"
+PS1="%F{green}%n:%F{cyan}%c%f$ "
 
 autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
