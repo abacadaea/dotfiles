@@ -137,7 +137,7 @@ function lpdf () {
   x=${1%%.*}
   #if latexmk $x.tex -pdf; then
   if pdflatex $x.tex; then
-    open -aSkim $x.pdf;
+    open  $x.pdf;
   fi
 }
 
@@ -152,7 +152,7 @@ function lpdf_soln() {
   x_soln=$x"_SOLUTIONS"
   if pdflatex "\def\showsoln{1} \input{$x.tex}"; then
     mv -f $x.pdf $x_soln.pdf
-    open -aSkim $x_soln.pdf;
+    open  $x_soln.pdf;
   fi
 }
 
