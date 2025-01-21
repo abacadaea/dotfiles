@@ -150,10 +150,12 @@ function lpdf_nosoln() {
 function lpdf_soln() {
   x=${1%%.*}
   x_soln=$x"_SOLUTIONS"
+  cp $x.pdf $x.tmp.pdf
   if pdflatex "\def\showsoln{1} \input{$x.tex}"; then
     mv -f $x.pdf $x_soln.pdf
     open  $x_soln.pdf;
   fi
+  mv $x.tmp.pdf $x.pdf
 }
 
 function lpdf_all() {
